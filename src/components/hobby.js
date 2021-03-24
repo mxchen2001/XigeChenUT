@@ -61,7 +61,7 @@ class myHobbies extends Component {
                         '1/4 White Onion',
                         '1 Tbsp White Miso Paste',
                         '1 Tbsp Tomato Paste',
-                        '1 Tbsp Chicken Bullion',
+                        '1 Tbsp Chicken Bouillon',
                         '1 tsp salt',
                         '1-2 tsp sugar'
                     ];

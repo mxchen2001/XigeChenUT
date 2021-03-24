@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {
     Typography,
-    Paper
+    Paper,
+    Container
 } from '@material-ui/core';
 
 import {
@@ -100,8 +101,34 @@ class MyTimeline extends Component {
         }
     }
 
-    renderListSubtitle(currentTitle) {
+    toggleSem(currentYear) {
+        if (currentYear === "Fall 2019") {
+            this.setState({
+                sem1: toggle(this.state.sem1, 'showCurrent')
+            }); 
+            return
+        }
+        if (currentYear === "Spring 2020") {
+            this.setState({
+                sem2: toggle(this.state.sem2, 'showCurrent')
+            }); 
+            return
+        }
+        if (currentYear === "Fall 2020") {
+            this.setState({
+                sem3: toggle(this.state.sem3, 'showCurrent')
+            }); 
+            return
+        }
+        if (currentYear === "Spring 2021") {
+            this.setState({
+                sem4: toggle(this.state.sem4, 'showCurrent')
+            }); 
+            return
+        }
+    }
 
+    renderListSubtitle(currentTitle) {
         return (
             <List
                 component="nav"
@@ -109,7 +136,10 @@ class MyTimeline extends Component {
                 className={listClasses.root}
                 >
 
-                <ListItem>
+                <ListItem 
+                    button
+                    onClick={() => this.toggleSem(currentTitle)} 
+                    >
                     <ListItemText primary={currentTitle} />
                 </ListItem>
 
@@ -143,7 +173,7 @@ class MyTimeline extends Component {
                             button 
                             className={listClasses.nested} 
                             component={Link} 
-                            to="/Labs/EE306Labs"
+                            to="/XigeChenUT/Labs/EE306Labs"
                             >
                             <ListItemText 
                                 buttons
@@ -183,7 +213,7 @@ class MyTimeline extends Component {
                             button 
                             className={listClasses.nested}
                             component={Link} 
-                            to="/Labs/EE319Labs"
+                            to="/XigeChenUT/Labs/EE319Labs"
                             >
                             <ListItemText 
                                 button 
@@ -209,7 +239,7 @@ class MyTimeline extends Component {
                             button 
                             className={listClasses.nested}
                             component={Link} 
-                            to="/Labs/EE312Labs">
+                            to="/XigeChenUT/Labs/EE312Labs">
                             <ListItemText 
                                 button
                                 primary="EE 312H Labs" />
@@ -257,7 +287,7 @@ class MyTimeline extends Component {
                             button 
                             className={listClasses.nested}
                             component={Link} 
-                            to="/Labs/EE460nLabs">
+                            to="/XigeChenUT/Labs/EE460nLabs">
                             <ListItemText 
                                 button 
                                 primary="EE 460N Labs"
@@ -283,7 +313,7 @@ class MyTimeline extends Component {
                             button 
                             className={listClasses.nested}
                             component={Link} 
-                            to="/Labs/EE422Labs">
+                            to="/XigeChenUT/Labs/EE422Labs">
                             <ListItemText 
                                 button
                                 primary="EE 422C Labs" />
@@ -403,8 +433,10 @@ class MyTimeline extends Component {
         }));
 
         return (
-            <div>
-
+            <Container style={{maxWidth: '80%'}}>
+                <Typography variant="h2" color="textSecondary">
+                    My Classes
+                </Typography>
                 <Timeline align="left">
                 <TimelineItem>
                     <TimelineOppositeContent>
@@ -516,7 +548,7 @@ class MyTimeline extends Component {
 
                     <TimelineContent>
                     <Paper m={2} elevation={3} className={timelineClasses.paper}>
-                        {this.state.sem4['showCurrent']? this.renderSem4() : this.renderListSubtitle("Spring 2020")}                    
+                        {this.state.sem4['showCurrent']? this.renderSem4() : this.renderListSubtitle("Spring 2021")}                    
                     </Paper>
                     </TimelineContent>
 
@@ -543,7 +575,7 @@ class MyTimeline extends Component {
 
                 </TimelineItem>
             </Timeline>
-            </div>
+        </Container>
         );
     }
 }

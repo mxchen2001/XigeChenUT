@@ -73,12 +73,10 @@ function gitProjects() {
 
     <Container style={{justifyContent:'center', alignItems:'center', maxWidth:'80%'}}>
 
-        <div style={{display: 'flex', justifyContent:'center', alignItems:'center', height: '60vh'}}>
-                <Typography variant="h2" style={{alignItems: 'center'}}>
-                    Projects 
-                </Typography>
-        </div>
-
+        <Typography variant="h2" color="textSecondary">
+            My Projects
+        </Typography>
+        <Container style={{display: 'flex', justifyContent:'center', alignItems:'center', height: '10vh'}}/>
         <Grid container justify = "center" xs={12} spacing={1}>
             {myProjs.map((row) =>
                 <Box m={4}>

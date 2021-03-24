@@ -155,19 +155,32 @@ class Home extends Component {
                     <img src={UT_ECE} style={{position: 'fixed', opacity: 1, maxWidth: "1900px"}} width={this.state.picSize} />
                 </Container>
 
-                <div style={{display: 'flex', justifyContent:'center', alignItems:'center', height: '70vh'}}>
+                <Container style={{display: 'flex', justifyContent:'center', alignItems:'center', height: '40vh'}}/>
+                <Container style={{display: 'flex', justifyContent:'center', alignItems:'center', height: '20vh',}}>
                     <Typography variant="h2" 
                                 style={{alignItems: 'center', 
-                                        position: this.state.ypos > 969 ? 'fixed' : 'relative',  
                                         top: '10%', 
-                                        opacity: this.getShowEl(this.state.ypos, 0, 1240)? this.getOpacity(this.state.ypos, 969, 1240): 0}}>
+                                        opacity: this.getOpacity(this.state.ypos, 869, 1069)}}>
                         My Time at UT
                     </Typography>
-                </div>
+                </Container>
+                <Container style={{display: 'flex', justifyContent:'center', alignItems:'center', height: '20vh'}}>
+                    <Typography variant="h2" 
+                                style={{alignItems: 'center',
+                                        fontSize: '1.2rem',
+                                        top: '10%', 
+                                        opacity: this.getOpacity(this.state.ypos, 969, 1169)}}>
+                        Student at the University of Texas at Austin, pursuing a degree in Computer Engineering. Experienced in a variety of languages, platforms, and embedded systems. Skilled at team base work and remote development.
+                    </Typography>
+                </Container>
 
-                <MyTimeline/>
-
-                <div style={{display: 'flex', justifyContent:'center', alignItems:'center', height: '30vh'}}>
+                <Container style={{
+                            display: 'flex', 
+                            justifyContent:'center', 
+                            alignItems:'center', 
+                            height: '30vh',
+                            opacity: this.getOpacity(this.state.ypos, 1169, 1369)
+                            }}>
                     <Box m={2}>
                         <Typography variant="h2" style={{alignItems: 'center', fontSize: '2.4rem'}}>
                             Updated 2021    
@@ -182,12 +195,18 @@ class Home extends Component {
                             Resume
                         </Button>
                     </Box>
-                </div>
-
-                <MySkills/>
-
-                <GitProjects/>
-
+                </Container>
+                <Container style={{opacity: this.getOpacity(this.state.ypos, 1669, 2069)}}>
+                    <MySkills/>
+                </Container>
+                <Container style={{display: 'flex', justifyContent:'center', alignItems:'center', height: '10vh'}}/>
+                <Container style={{opacity: this.getOpacity(this.state.ypos, 2869, 3269)}}>
+                    <GitProjects/>
+                </Container>
+                <Container style={{display: 'flex', justifyContent:'center', alignItems:'center', height: '10vh'}}/>
+                <Container style={{opacity: this.getOpacity(this.state.ypos, 4269, 4469)}}>
+                    <MyTimeline/>
+                </Container>
                 <MyHobbies/>
             </div>
         );

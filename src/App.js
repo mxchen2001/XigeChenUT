@@ -54,7 +54,7 @@ function Navbar() {
             color: "#bdbdbd",
             textDecoration: 'none'
           }}
-          to="/">
+          to="/XigeChenUT/">
             <Button>
               <Typography variant='h2' className={classes.title} style={{fontSize: '1.7rem', color: "white"}}>
                 Home
@@ -129,12 +129,12 @@ function App() {
         <Router>
           <Navbar/>
             <Switch>
-              <Route path="/Labs/EE306Labs" component={EE306Labs} />
-              <Route path="/Labs/EE312Labs" component={EE312Labs} />
-              <Route path="/Labs/EE319Labs" component={EE319Labs} />
-              <Route path="/Labs/EE460nLabs" component={EE460nLabs} />
-              <Route path="/Labs/EE422Labs" component={EE422Labs} />
-              <Route path="/" component={Home} />
+              <Route exact path="/XigeChenUT/Labs/EE306Labs" component={EE306Labs} />
+              <Route exact path="/XigeChenUT/Labs/EE312Labs" component={EE312Labs} />
+              <Route exact path="/XigeChenUT/Labs/EE319Labs" component={EE319Labs} />
+              <Route exact path="/XigeChenUT/Labs/EE460nLabs" component={EE460nLabs} />
+              <Route exact path="/XigeChenUT/Labs/EE422Labs" component={EE422Labs} />
+              <Route exact path="/XigeChenUT/" component={Home} />
             </Switch>
             <Footer />
         </Router>

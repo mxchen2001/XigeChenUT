@@ -16,6 +16,9 @@ import java_logo from './assets/java.png'
 import linux_logo from './assets/linux.png'
 import python_logo from './assets/python.png'
 import react_logo from './assets/react.png'
+import github_logo from './assets/github.png'
+import js_logo from './assets/js.png'
+import arm_logo from './assets/arm.png'
 
 const SWLogos1 = [
     C_logo,
@@ -25,18 +28,19 @@ const SWLogos1 = [
     linux_logo,
     python_logo,
     react_logo,
+    github_logo,
+    js_logo,
+    arm_logo,
 ];
 
 function mySkills() {
     return (
-        <Container>
-            <div style={{display: 'flex', justifyContent:'center', alignItems:'center', height: '30vh'}}>
-                <Typography variant="h2" style={{alignItems: 'center'}}>
-                    Skills 
-                </Typography>
-            </div>
-            
-            <div style={{display: 'flex', justifyContent:'center', alignItems:'center', height: '30vh'}}>
+        <Container style={{maxWidth:'80%'}}>
+            <Typography variant="h2" color="textSecondary">
+                Skills
+            </Typography>
+            <Container style={{display: 'flex', justifyContent:'center', alignItems:'center', height: '10vh'}}/>
+            <Container style={{display: 'flex', justifyContent:'center', alignItems:'center', height: '30vh'}}>
 
                 <Grid container justify = "center" item xs={12} spacing={10}>
                 {SWLogos1.map((currentLogo) => (
@@ -45,7 +49,7 @@ function mySkills() {
                     </Box>
                 ))}
                 </Grid>
-            </div>
+            </Container>
         </Container>
     );
 }
