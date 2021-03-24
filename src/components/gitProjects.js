@@ -40,7 +40,9 @@ function projectCards(projName, description, image, link) {
     return (
         <Container style={{justifyContent:'center', alignItems:'center', maxWidth:'400px'}}>
             <Card className={classes.root}>
-                <CardActionArea href={link}>
+                <CardActionArea 
+                        target="_blank"
+                        href={link}>
                     <CardMedia
                     className={classes.media}
                     >
@@ -59,7 +61,7 @@ function projectCards(projName, description, image, link) {
                     </CardContent>
                 </CardActionArea>
                 <CardActions>
-                    <Button size="small" color="primary" href={link}>
+                    <Button size="small" color="primary" target="_blank" href={link}>
                         Learn More
                     </Button>
                 </CardActions>

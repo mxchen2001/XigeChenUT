@@ -173,6 +173,7 @@ class MyTimeline extends Component {
                             button 
                             className={listClasses.nested} 
                             component={Link} 
+                            target="_blank"
                             to="/XigeChenUT/Labs/EE306Labs"
                             >
                             <ListItemText 
@@ -213,6 +214,7 @@ class MyTimeline extends Component {
                             button 
                             className={listClasses.nested}
                             component={Link} 
+                            target="_blank"
                             to="/XigeChenUT/Labs/EE319Labs"
                             >
                             <ListItemText 
@@ -239,6 +241,7 @@ class MyTimeline extends Component {
                             button 
                             className={listClasses.nested}
                             component={Link} 
+                            target="_blank"
                             to="/XigeChenUT/Labs/EE312Labs">
                             <ListItemText 
                                 button
@@ -286,6 +289,7 @@ class MyTimeline extends Component {
                         <ListItem 
                             button 
                             className={listClasses.nested}
+                            target="_blank"
                             component={Link} 
                             to="/XigeChenUT/Labs/EE460nLabs">
                             <ListItemText 
@@ -313,6 +317,7 @@ class MyTimeline extends Component {
                             button 
                             className={listClasses.nested}
                             component={Link} 
+                            target="_blank"
                             to="/XigeChenUT/Labs/EE422Labs">
                             <ListItemText 
                                 button

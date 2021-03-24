@@ -100,17 +100,17 @@ function Footer() {
         <Toolbar>
           <Grid justify={"center"} alignItems={"center"} spacing={3} container>
             <Grid item>
-              <IconButton color="inherit" href="https://www.linkedin.com/in/xige-michael-chen-7a4a45190/">
+              <IconButton color="inherit" target="_blank" href="https://www.linkedin.com/in/xige-michael-chen-7a4a45190/">
                 <LinkedInIcon/>
               </IconButton>
             </Grid>
             <Grid item>
-              <IconButton color="inherit" href="https://github.com/mxchen2001">
+              <IconButton color="inherit" target="_blank" href="https://github.com/mxchen2001">
                 <GitHubIcon />
               </IconButton>
             </Grid>
             <Grid item>
-              <IconButton color="inherit" href="mailto:mxchen2001@utexas.edu">
+              <IconButton color="inherit" target="_blank" href="mailto:mxchen2001@utexas.edu">
                 <MailOutlineIcon />
               </IconButton>
             </Grid>
