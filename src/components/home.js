@@ -1,527 +1,194 @@
-import React, {Component} from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import React , {Component} from 'react';
+import MyTimeline from './timeline'
+import GitProjects from './gitProjects'
+import MySkills from './skills'
+import MyHobbies from './hobby'
+
+import UT_ECE from './assets/UTECE.png'
+import UT_Tower from './assets/UT_Tower.jpeg'
+
 import {
     Typography,
-    Button,
+    Paper,
     Grid,
+    Button,
     Container,
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TableRow,
-    Paper
+    Box
 } from '@material-ui/core';
 
-import {
-    Timeline,
-    TimelineItem,
-    TimelineSeparator,
-    TimelineConnector,
-    TimelineContent,
-    TimelineOppositeContent,
-    TimelineDot
-} from '@material-ui/lab';
+import GetAppIcon from '@material-ui/icons/GetApp';
 
-import ListSubheader from '@material-ui/core/ListSubheader';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import Collapse from '@material-ui/core/Collapse';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import DraftsIcon from '@material-ui/icons/Drafts';
-import SendIcon from '@material-ui/icons/Send';
-import ExpandLess from '@material-ui/icons/ExpandLess';
-import ExpandMore from '@material-ui/icons/ExpandMore';
-import StarBorder from '@material-ui/icons/StarBorder';
+// Using Grey: #959595 | Cream: #e2e0d4 | Off Pink: #cebeb9 | Pure Pink: #e7cac2 | Soft Grey:#e8e8e8
 
-import MenuBookIcon from '@material-ui/icons/MenuBook';
-import LaptopMacIcon from '@material-ui/icons/LaptopMac';
-import MemoryIcon from '@material-ui/icons/Memory';
-import DevicesIcon from '@material-ui/icons/Devices';
-
-const UTsem1 = {
-    'showCurrent' : false,
-    'ee302' : false,
-    'ee306' : false,
-    'm427j' : false,
-}
-
-const UTsem2 = {
-    'showCurrent' : false,
-    'ee319H' : false,
-    'ee312H' : false,
-    'ee411' : false,
-    'm340L' : false,
-    'm325k' : false,
-}
-
-const UTsem3 = {
-    'showCurrent' : false,
-    'ee460n' : false,
-    'ee422c' : false,
-    'ee313' : false,
-    'ee333t' : false,
-    'ee351k' : false,
-}
-
-const UTsem4 = {
-    'showCurrent' : false,
-    'ee360c' : false,
-    'ee461l' : false,
-    'm328k' : false,
-    'ee461s' : false,
-}
-
-function toggle(myClasses, toggleEl) {
-    const currentState = myClasses[toggleEl];
-    myClasses[toggleEl] = !currentState;
-    return myClasses;
-}
-
-const listClasses = makeStyles((theme) => ({
-    root: {
-      width: '100%',
-      maxWidth: 360,
-      backgroundColor: theme.palette.background.paper,
-    },
-    nested: {
-      paddingLeft: theme.spacing(4),
-    },
-}));
-
-
+const DEBUG = false;
 
 class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            open: false,
-            sem1: UTsem1,
-            sem2: UTsem2,
-            sem3: UTsem3,
-            sem4: UTsem4,
+            scrolling: false,
+            ypos: 0,
+            picSize: '70%',
+            logo_opac: 1,
         }
     }
 
-    renderListSubtitle(currentTitle) {
-
-        return (
-            <List
-                component="nav"
-                aria-labelledby="nested-list-subheader"
-                subheader={
-                <ListSubheader component="div" id="nested-list-subheader">
-                    Click to expand
-                </ListSubheader>
-                }
-                className={listClasses.root}
-                >
-
-                <ListItem>
-                    <ListItemText primary={currentTitle} />
-                </ListItem>
-
-            </List>
-        );
+    componentDidMount() {
+        window.addEventListener('scroll', () => this.handleScroll());
+    }
+    
+    componentWillUnmount() {
+        window.removeEventListener('scroll', () => this.handleScroll());
     }
 
-    renderSem1() {
-        return (
-            <List
-                component="nav"
-                aria-labelledby="nested-list-subheader"
-                subheader={
-                <ListSubheader component="div" id="nested-list-subheader">
-                    Fall 2019
-                </ListSubheader>
-                }
-                className={listClasses.root}
-                >
-                <ListItem button>
-                    <ListItemText primary="Intro to Electrical Engineering" />
-                </ListItem>
+    // Set the pic size of the home pic
+    setPicSize(input, max, limit) {
+        let difference = ((input/limit) * 100);
+        if ((difference >= max) && window.scrollY !== 0) {
+            this.setState({
+                picSize: '0%'
+            });
+            return;
+        }
+        let percent = max - difference;
+        let sPercent = percent.toString();
+        sPercent += '%'
+        this.setState({
+            picSize: sPercent
+        })
+    }
     
-                <ListItem button onClick={() => {
-                    this.setState({
-                        sem1: toggle(this.state.sem1, 'ee306')
-                    }); 
-                }}>
-                    <ListItemText primary="Introduction to Computing" />
-                    {this.state.sem1['ee306'] ? <ExpandLess /> : <ExpandMore />}
-                </ListItem>
-    
-                <Collapse in={this.state.sem1['ee306']} timeout="auto" unmountOnExit>
-                    <List component="div" disablePadding>
-                        <ListItem button className={listClasses.nested}>
-                            <ListItemText 
-                                buttons
-                                primary="EE 306 Labs" />
-                        </ListItem>
-                    </List>
-                </Collapse>
-    
-                <ListItem button>
-                    <ListItemText primary="Differential Equations" />
-                </ListItem>
-            </List>
-        );
+    // // Set the opacity of logos
+    // setOpacity(input, lower, upper) {
+    //     if (input < (logoStart - (logoSize/2))) {
+    //         this.setState({
+    //             logo_opac: 1
+    //         })
+    //         return;
+    //     }
+
+    //     const midpoint = (upper - lower) / 2;
+    //     const modded_input = input % (upper - lower);
+
+    //     let diff = 1;
+    //     if (modded_input > midpoint) {
+    //         diff = modded_input - midpoint;
+            
+    //     } else {
+    //         diff = midpoint - modded_input;
+            
+    //     }
+    //     let ratio = 1 - diff/midpoint;
+
+    //     this.setState({
+    //         logo_opac: ratio
+    //     })
+    //     return;
+    // }
+
+    // Get the font for dynamic titles
+    getFont(input, starting, limit, end) {
+        if ((input < limit)) {
+            const sPercent = starting.toString();
+            return sPercent + 'px';
+        }
+        const partition = end - limit;
+        let size_factor = (end - input) / partition;
+        if (size_factor < 0) {
+            size_factor = 0;
+        }
+        const fontSize = starting * size_factor;
+        const sPercent = fontSize.toString();
+        return sPercent + 'px';
     }
 
-    renderSem2() {
-        return (
-            <List
-                component="nav"
-                aria-labelledby="nested-list-subheader"
-                subheader={
-                <ListSubheader component="div" id="nested-list-subheader">
-                    Spring 2020
-                </ListSubheader>
-                }
-                className={listClasses.root}
-                >
-                <ListItem 
-                    button
-                    onClick={() => {
-                        this.setState({
-                            sem2: toggle(this.state.sem2, 'ee319h')
-                        }); 
-                    }}>
-                    <ListItemText primary="Intro to Embedded Systems" />
-                    {this.state.sem2['ee319h'] ? <ExpandLess /> : <ExpandMore />}
-                </ListItem>
-    
-                <Collapse in={this.state.sem2['ee319h']} timeout="auto" unmountOnExit>
-                    <List component="div" disablePadding>
-                        <ListItem button className={listClasses.nested}>
-                            <ListItemText 
-                                button 
-                                primary="EE 319H Labs" />
-                        </ListItem>
-                    </List>
-                </Collapse>
-    
-                <ListItem 
-                    button 
-                    onClick={() => {
-                        this.setState({
-                            sem2: toggle(this.state.sem2, 'ee312h')
-                        }); 
-                    }}>
-                    <ListItemText primary="Software Design and Implementation I" />
-                    {this.state.sem2['ee312h'] ? <ExpandLess /> : <ExpandMore />}
-                </ListItem>
-    
-                <Collapse in={this.state.sem2['ee312h']} timeout="auto" unmountOnExit>
-                    <List component="div" disablePadding>
-                        <ListItem button className={listClasses.nested}>
-                            <ListItemText 
-                                button
-                                primary="EE 312H Labs" />
-                        </ListItem>
-                    </List>
-                </Collapse>
-    
-                <ListItem button>
-                    <ListItemText primary="Circuit Theory" />
-                </ListItem>
-    
-                <ListItem button>
-                    <ListItemText primary="Matrices and Matrix Calculations" />
-                </ListItem>
+    getOpacity(input, lower, upper) {
+        if ((input < lower)) {
+            return 1;
+        }
+        const partition = upper - lower;
+        let size_factor = (upper - input) / partition;
+        if (size_factor < 0) {
+            size_factor = 0;
+        }
+        return size_factor;
 
-                <ListItem button>
-                    <ListItemText primary="Discrete Mathematics" />
-                </ListItem>
-    
-            </List>
-        );
     }
 
-    renderSem3() {
-        return (
-            <List
-                component="nav"
-                aria-labelledby="nested-list-subheader"
-                subheader={
-                <ListSubheader component="div" id="nested-list-subheader">
-                    Fall 2020
-                </ListSubheader>
-                }
-                className={listClasses.root}
-                >
-                <ListItem 
-                    button
-                    onClick={() => {
-                        this.setState({
-                            sem3: toggle(this.state.sem3, 'ee460n')
-                        }); 
-                    }}>
-                    <ListItemText primary="Computer Architecture" />
-                    {this.state.sem3['ee460n'] ? <ExpandLess /> : <ExpandMore />}
-                </ListItem>
-    
-                <Collapse in={this.state.sem3['ee460n']} timeout="auto" unmountOnExit>
-                    <List component="div" disablePadding>
-                        <ListItem button className={listClasses.nested}>
-                            <ListItemText 
-                                button 
-                                primary="EE 460N Labs" />
-                        </ListItem>
-                    </List>
-                </Collapse>
-    
-                <ListItem 
-                    button 
-                    onClick={() => {
-                        this.setState({
-                            sem3: toggle(this.state.sem3, 'ee422c')
-                        }); 
-                    }}>
-                    <ListItemText primary="Software Design and Implementation II" />
-                    {this.state.sem3['ee422c'] ? <ExpandLess /> : <ExpandMore />}
-                </ListItem>
-    
-                <Collapse in={this.state.sem3['ee422c']} timeout="auto" unmountOnExit>
-                    <List component="div" disablePadding>
-                        <ListItem button className={listClasses.nested}>
-                            <ListItemText 
-                                button
-                                primary="EE 422C Labs" />
-                        </ListItem>
-                    </List>
-                </Collapse>
-    
-                <ListItem button>
-                    <ListItemText primary="Circuit Theory" />
-                </ListItem>
-    
-                <ListItem button>
-                    <ListItemText primary="Matrices and Matrix Calculations" />
-                </ListItem>
-
-                <ListItem button>
-                    <ListItemText primary="Discrete Mathematics" />
-                </ListItem>
-    
-            </List>
-        );
+    // Get if the element should be displayed
+    getShowEl(input, lower, upper) {
+        if (input > lower && input < upper) {
+            return true;
+        }
+        return false;
     }
 
-    renderSem4() {
-        return (
-            <List
-                component="nav"
-                aria-labelledby="nested-list-subheader"
-                subheader={
-                <ListSubheader component="div" id="nested-list-subheader">
-                    Spring 2021
-                </ListSubheader>
-                }
-                className={listClasses.root}
-                >
-                <ListItem 
-                    button
-                    onClick={() => {
-                        this.setState({
-                            sem4: toggle(this.state.sem4, 'ee360c')
-                        }); 
-                    }}>
-                    <ListItemText primary="Algorithms" />
-                    {this.state.sem4['ee360c'] ? <ExpandLess /> : <ExpandMore />}
-                </ListItem>
-    
-                <Collapse in={this.state.sem4['ee360c']} timeout="auto" unmountOnExit>
-                    <List component="div" disablePadding>
-                        <ListItem button className={listClasses.nested}>
-                            <ListItemText 
-                                button 
-                                primary="EE 360C Labs" />
-                        </ListItem>
-                    </List>
-                </Collapse>
-    
-                <ListItem 
-                    button 
-                    onClick={() => {
-                        this.setState({
-                            sem4: toggle(this.state.sem4, 'ee461l')
-                        }); 
-                    }}>
-                    <ListItemText primary="Software Engineering and Design Lab" />
-                    {this.state.sem4['ee461l'] ? <ExpandLess /> : <ExpandMore />}
-                </ListItem>
-    
-                <Collapse in={this.state.sem4['ee461l']} timeout="auto" unmountOnExit>
-                    <List component="div" disablePadding>
-                        <ListItem button className={listClasses.nested}>
-                            <ListItemText 
-                                button
-                                primary="EE 461L Labs" />
-                        </ListItem>
-                    </List>
-                </Collapse>
-    
-                <ListItem button>
-                    <ListItemText primary="Intro to Number Theory" />
-                </ListItem>
-    
-                <ListItem 
-                    button 
-                    onClick={() => {
-                        this.setState({
-                            sem4: toggle(this.state.sem4, 'ee461s')
-                        }); 
-                    }}>
-                    <ListItemText primary="Operating Systems" />
-                    {this.state.sem4['ee461s'] ? <ExpandLess /> : <ExpandMore />}
-                </ListItem>
-    
-                <Collapse in={this.state.sem4['ee461s']} timeout="auto" unmountOnExit>
-                    <List component="div" disablePadding>
-                        <ListItem button className={listClasses.nested}>
-                            <ListItemText 
-                                button
-                                primary="EE 461S Labs" />
-                        </ListItem>
-                    </List>
-                </Collapse>    
-            </List>
-        );
+
+
+    handleScroll() {
+        this.setState({
+            ypos: window.scrollY
+        })
+        this.setPicSize(this.state.ypos, 70, 860);
+        // this.setOpacity(this.state.ypos, 0, logoSize);
+        if (window.scrollY === 0 && this.state.scrolling === true) {
+            this.setState({scrolling: false});
+        }
+        else if (window.scrollY !== 0 && this.state.scrolling !== true) {
+            this.setState({scrolling: true});
+        }
     }
 
-    render(){          
-        const timelineClasses = makeStyles((theme) => ({
-            paper: {
-                padding: '6px 32px',
-                paddingRight: '10px'
-            },
-            secondaryTail: {
-                backgroundColor: theme.palette.secondary.main,
-            },
-            DotButton: {
-                margin: theme.spacing(1),
-                borderRadius: "5em"
-            },
-        }));
-
+    render() {
         return (
             <div>
-            <Timeline align="left">
-            <TimelineItem>
-                <TimelineOppositeContent>
-                <Typography variant="body2" color="textSecondary">
-                    Fall 2019
-                </Typography>
-                </TimelineOppositeContent>
-                <TimelineSeparator>
-                <TimelineDot onClick={() => { 
-                    this.setState({
-                        sem1: toggle(this.state.sem1, 'showCurrent')
-                    }); 
-                    }}  
-                    style={{cursor: "pointer",}}>
-                    <MenuBookIcon />
-                </TimelineDot>
-                <TimelineConnector />
-                </TimelineSeparator>
-                <TimelineContent>
-                <Paper m={2} elevation={3} className={timelineClasses.paper}>
-                    {this.state.sem1['showCurrent']? this.renderSem1() : this.renderListSubtitle("Fall 2019")}                    
-                </Paper>
-                </TimelineContent>
-            </TimelineItem>
-            <TimelineItem>
-                <TimelineOppositeContent>
-                <Typography variant="body2" color="textSecondary">
-                    Spring 2020
-                </Typography>
-                </TimelineOppositeContent>
-                <TimelineSeparator>
-                <TimelineDot 
-                    color="primary"
-                    onClick={() => { 
-                        this.setState({
-                            sem2: toggle(this.state.sem2, 'showCurrent')
-                        });     
-                    }}  
-                    style={{cursor: "pointer",}}
-                    >
-                    <LaptopMacIcon />
-                </TimelineDot>
-                <TimelineConnector />
-                </TimelineSeparator>
 
-                <TimelineContent>
-                <Paper m={2} elevation={3} className={timelineClasses.paper}>
-                    {this.state.sem2['showCurrent']? this.renderSem2() : this.renderListSubtitle("Spring 2020")}                    
-                </Paper>
-                </TimelineContent>
+                {DEBUG? <Typography style={{alignItems: 'center', 
+                                    position: 'fixed' ,  
+                                    top: '10%',
+                                    }}>
+                        ypos: {this.state.ypos}, logo_opac: {this.state.logo_opac}
+                </Typography> : null}
+                
 
-            </TimelineItem>
-            <TimelineItem>
+                <Container maxWidth="2400px" style={{display: 'flex', margin: 'auto', justifyContent:'center', alignItems:'center', height: '70vh'}}>
+                    <img src={UT_ECE} style={{position: 'fixed', opacity: 1, maxWidth: "1900px"}} width={this.state.picSize} />
+                </Container>
 
-                <TimelineOppositeContent>
-                <Typography variant="body2" color="textSecondary">
-                    Fall 2020
-                </Typography>
-                </TimelineOppositeContent>
+                <div style={{display: 'flex', justifyContent:'center', alignItems:'center', height: '70vh'}}>
+                    <Typography variant="h2" 
+                                style={{alignItems: 'center', 
+                                        position: this.state.ypos > 969 ? 'fixed' : 'relative',  
+                                        top: '10%', 
+                                        opacity: this.getShowEl(this.state.ypos, 0, 1240)? this.getOpacity(this.state.ypos, 969, 1240): 0}}>
+                        My Time at UT
+                    </Typography>
+                </div>
 
-                <TimelineSeparator>
-                <TimelineDot 
-                    color="primary" 
-                    variant="outlined" 
-                    onClick={() => { 
-                        this.setState({
-                            sem3: toggle(this.state.sem3, 'showCurrent')
-                        });     
-                    }}  
-                    style={{cursor: "pointer",}}
-                    >
-                    <MemoryIcon />
-                </TimelineDot>
-                <TimelineConnector className={timelineClasses.secondaryTail} />
-                </TimelineSeparator>
+                <MyTimeline/>
 
-                <TimelineContent>
-                <Paper m={2} elevation={3} className={timelineClasses.paper}>
-                    {this.state.sem3['showCurrent']? this.renderSem3() : this.renderListSubtitle("Fall 2020")}                    
-                </Paper>
-                </TimelineContent>
+                <div style={{display: 'flex', justifyContent:'center', alignItems:'center', height: '30vh'}}>
+                    <Box m={2}>
+                        <Typography variant="h2" style={{alignItems: 'center', fontSize: '2.4rem'}}>
+                            Updated 2021    
+                        </Typography>
+                    </Box>
+                    <Box m={2}>
+                        <Button
+                            variant="contained"
+                            color="default"
+                            startIcon={<GetAppIcon />}
+                            >
+                            Resume
+                        </Button>
+                    </Box>
+                </div>
 
-            </TimelineItem>
-            <TimelineItem>
+                <MySkills/>
 
-                <TimelineOppositeContent>
-                <Typography variant="body2" color="textSecondary">
-                    Spring 2021
-                </Typography>
-                </TimelineOppositeContent>
+                <GitProjects/>
 
-                <TimelineSeparator>
-                <TimelineDot 
-                    color="primary"
-                    onClick={() => { 
-                        this.setState({
-                            sem4: toggle(this.state.sem4, 'showCurrent')
-                        });     
-                    }}  
-                    style={{cursor: "pointer",}}
-                    >
-                    <DevicesIcon />
-                </TimelineDot>
-                </TimelineSeparator>
-
-                <TimelineContent>
-                <Paper m={2} elevation={3} className={timelineClasses.paper}>
-                    {this.state.sem4['showCurrent']? this.renderSem4() : this.renderListSubtitle("Spring 2020")}                    
-                </Paper>
-                </TimelineContent>
-
-            </TimelineItem>
-            </Timeline>
+                <MyHobbies/>
             </div>
         );
     }
