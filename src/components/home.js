@@ -191,6 +191,7 @@ class Home extends Component {
                             variant="contained"
                             color="default"
                             startIcon={<GetAppIcon />}
+                            href="https://github.com/mxchen2001/XigeChenUT/raw/master/src/components/assets/pdf_assets/resume_updated_spring_21.pdf"
                             >
                             Resume
                         </Button>
