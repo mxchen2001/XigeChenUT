@@ -124,19 +124,21 @@ function App() {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
-      <Router>
-        <Navbar/>
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/Labs/EE306Labs" component={EE306Labs} />
-            <Route exact path="/Labs/EE312Labs" component={EE312Labs} />
-            <Route exact path="/Labs/EE319Labs" component={EE319Labs} />
-            <Route exact path="/Labs/EE460nLabs" component={EE460nLabs} />
-            <Route exact path="/Labs/EE422Labs" component={EE422Labs} />
-          </Switch>
-          <Footer />
-      </Router>
+    <div>
+      <div className={classes.root}>
+        <Router>
+          <Navbar/>
+            <Switch>
+              <Route path="/Labs/EE306Labs" component={EE306Labs} />
+              <Route path="/Labs/EE312Labs" component={EE312Labs} />
+              <Route path="/Labs/EE319Labs" component={EE319Labs} />
+              <Route path="/Labs/EE460nLabs" component={EE460nLabs} />
+              <Route path="/Labs/EE422Labs" component={EE422Labs} />
+              <Route path="/" component={Home} />
+            </Switch>
+            <Footer />
+        </Router>
+      </div>
     </div>
   );
 }

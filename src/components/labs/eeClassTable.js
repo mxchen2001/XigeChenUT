@@ -26,7 +26,7 @@ function getButton(name, link) {
     }
 
     return (
-        <Button disable variant="outlined">
+        <Button disabled variant="outlined">
             Unable to share due to University Policy.
         </Button>
     );
@@ -40,7 +40,7 @@ function eeClassTable(data) {
     });
 
     return (
-        <div style={{height: '90vh'}}>
+        <div style={{minHeight: '90vh'}}>
         <br></br>
         <TableContainer component={Paper} elevation={10} style={{width: '80%', margin: 'auto'}}>
             <Table className={classes.table} aria-label="simple table">
@@ -74,6 +74,7 @@ function eeClassTable(data) {
                 </TableBody>
             </Table>
         </TableContainer>
+        <br></br>
         </div>
     );
 }
