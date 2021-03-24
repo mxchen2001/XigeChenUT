@@ -8,12 +8,12 @@ function createData(name, description, language, difficulty, link) {
 }
 
 const myData = [
-    createData('Lab 1', 'Assembler', 'C', 'Easy', 'https://docs.google.com/document/d/1A6a9WFPtdgF6YK_HUH29u06mfrXP3wAiFFDtLAJ1Pew/edit?usp=sharing'),
-    createData('Lab 2', 'Instruction Level Simulator', 'C', 'Easy', 'https://docs.google.com/document/d/1uGZi6moXRGBXR_o3PbNtqK9m_HpGpGRMo7mZCKx9XD4/edit?usp=sharing'),
-    createData('Lab 3', 'Cycle Level Simulator', 'C', 'Easy', 'https://docs.google.com/document/d/1Xw2s-3LIQslkvBcrtOioobUXdMBQZf8MTUQMh8AYm1g/edit?usp=sharing'),
-    createData('Lab 4', 'Simulator with Interrupts and Exceptions', 'C', 'Easy', 'https://docs.google.com/document/d/19bx3W5OIixSxeuA7Jq9aMf6j3923SCc7S-q04gYScxE/edit?usp=sharing'),
-    createData('Lab 5', 'Simulator with Interrupts, Exceptions, and Virtual Memory', 'C', 'Easy', 'https://docs.google.com/document/d/1UHMp3T_WjxS8-QGJ3Umw0vDMgQ_3CbLH8EBTIf4uT6s/edit?usp=sharing'),
-    createData('Lab 6', 'Pipelined Simulator', 'C', 'Easy', 'https://docs.google.com/document/d/1kdIaZ0-aDeP2rSOgp8k31rYDogC_ZACvXdd7aLuD-t4/edit?usp=sharing'),
+    createData('Lab 1', 'Assembler', 'C', '6-7hrs', 'https://docs.google.com/document/d/1A6a9WFPtdgF6YK_HUH29u06mfrXP3wAiFFDtLAJ1Pew/edit?usp=sharing'),
+    createData('Lab 2', 'Instruction Level Simulator', 'C', '3-4hrs', 'https://docs.google.com/document/d/1uGZi6moXRGBXR_o3PbNtqK9m_HpGpGRMo7mZCKx9XD4/edit?usp=sharing'),
+    createData('Lab 3', 'Cycle Level Simulator', 'C', '3-4hrs', 'https://docs.google.com/document/d/1Xw2s-3LIQslkvBcrtOioobUXdMBQZf8MTUQMh8AYm1g/edit?usp=sharing'),
+    createData('Lab 4', 'Simulator with Interrupts and Exceptions', 'C', '9-12hrs', 'https://docs.google.com/document/d/19bx3W5OIixSxeuA7Jq9aMf6j3923SCc7S-q04gYScxE/edit?usp=sharing'),
+    createData('Lab 5', 'Simulator with Interrupts, Exceptions, and Virtual Memory', 'C', '8-11hrs', 'https://docs.google.com/document/d/1UHMp3T_WjxS8-QGJ3Umw0vDMgQ_3CbLH8EBTIf4uT6s/edit?usp=sharing'),
+    createData('Lab 6', 'Pipelined Simulator', 'C', '7-11hrs', 'https://docs.google.com/document/d/1kdIaZ0-aDeP2rSOgp8k31rYDogC_ZACvXdd7aLuD-t4/edit?usp=sharing'),
 ];
 
 function ee460nLabs() {

@@ -10,14 +10,14 @@ function createData(name, description, language, difficulty) {
 
 
 const myData = [
-    createData('Lab 1', 'Simple Sort', 'Java 1.8', 'Easy', null),
-    createData('Lab 2', 'Mastermind Game (Object Oriented)', 'Java 1.8', 'Easy', null),
-    createData('Lab 2.1', 'Mastermind Computer Player', 'Java 1.8', 'Easy', null),
-    createData('Lab 3', 'Word Ladder (BFS, DFS)', 'Java 1.8', 'Easy', null),
-    createData('Lab 4', 'Critters Evolution Similator (Command line)', 'Java 1.8', 'Easy', null),
-    createData('Lab 5', 'Critters UI using JavaFx', 'Java 1.8', 'Easy', null),
-    createData('Lab 6', 'Box Office Simulator (multithreading and synchronization)', 'Java 1.8', 'Easy', null),
-    createData('Final Project', 'Auction App (multithreading, synchronization, Client Server Communication, Database, encrytion, etc.)', 'Java 1.8', 'Hard', null),
+    createData('Lab 1', 'Simple Sort', 'Java 1.8', '1-2hrs', null),
+    createData('Lab 2', 'Mastermind Game (Object Oriented)', 'Java 1.8', '2-3hrs', null),
+    createData('Lab 2.1', 'Mastermind Computer Player', 'Java 1.8', '1-2hrs', null),
+    createData('Lab 3', 'Word Ladder (BFS, DFS)', 'Java 1.8', '3-4hrs', null),
+    createData('Lab 4', 'Critters Evolution Similator (Command line)', 'Java 1.8', '3-4hrs', null),
+    createData('Lab 5', 'Critters UI using JavaFx', 'Java 1.8', '4-6hrs', null),
+    createData('Lab 6', 'Box Office Simulator (multithreading and synchronization)', 'Java 1.8', '2-3hrs', null),
+    createData('Final Project', 'Auction App (multithreading, synchronization, Client Server Communication, Database, encrytion, etc.)', 'Java 1.8', '18-24hrs', null),
 ];
 
 function ee422Labs() {

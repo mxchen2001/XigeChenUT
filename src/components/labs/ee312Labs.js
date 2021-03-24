@@ -10,14 +10,14 @@ function createData(name, description, language, difficulty) {
 
 
 const myData = [
-    createData('Project 1', 'Spell-Checker', 'C', 'Easy', null),
-    createData('Project 2', 'Matrix Multiplication', 'C', 'Easy', null),
-    createData('Project 3', 'Custom Strings Library', 'C', 'Easy', null),
-    createData('Project 4', 'Inventory Checker', 'C', 'Easy', null),
-    createData('Project 5', 'Sets', 'C', 'Easy', null),
-    createData('Project 6', 'Recursion', 'C', 'Easy', null),
-    createData('Project 7', 'Inventory Checker II', 'C++', 'Easy', null),
-    createData('Project 8', 'Interpretor', 'C++', 'Easy', null),
+    createData('Project 1', 'Spell-Checker', 'C', '2-3hrs', null),
+    createData('Project 2', 'Matrix Multiplication', 'C', '1-2hrs', null),
+    createData('Project 3', 'Custom Strings Library', 'C', '2-3hrs', null),
+    createData('Project 4', 'Inventory Checker', 'C', '2-3hrs', null),
+    createData('Project 5', 'Sets', 'C', '2-3hrs', null),
+    createData('Project 6', 'Recursion', 'C', '2-3hrs', null),
+    createData('Project 7', 'Inventory Checker II', 'C++', '1-2hrs', null),
+    createData('Project 8', 'Interpretor', 'C++', '3-4hrs', null),
 ];
 
 function ee312Labs() {

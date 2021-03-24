@@ -13,11 +13,11 @@ function createData(name, description, language, difficulty, link) {
 const labData = null;
 
 const myData = [
-    createData('Lab 1', 'Shift/Rotate bits', 'LC3 Machine Code', 'Easy', 'http://users.ece.utexas.edu/~patt/19f.306/LabAssignments/Project1/index.html'),
-    createData('Lab 2', 'Simple Sorting', 'LC3 Machine Code', 'Easy', 'http://users.ece.utexas.edu/~patt/19f.306/LabAssignments/Project2/index.html'),
-    createData('Lab 3', 'Linked List', 'LC3 Assembly', 'Easy', 'http://users.ece.utexas.edu/~patt/19f.306/LabAssignments/Project3/index.html'),
-    createData('Lab 4', 'Connect 4', 'LC3 Assembly', 'Easy', 'http://users.ece.utexas.edu/~patt/19f.306/LabAssignments/Project4/PA4_coverpage.html'),
-    createData('Lab 5', 'Handling Interrupts', 'LC3 Assembly', 'Easy', 'http://users.ece.utexas.edu/~patt/19f.306/LabAssignments/Project5/index.html'),
+    createData('Lab 1', 'Shift/Rotate bits', 'LC3 Machine Code', '< 1hr', 'http://users.ece.utexas.edu/~patt/19f.306/LabAssignments/Project1/index.html'),
+    createData('Lab 2', 'Simple Sorting', 'LC3 Machine Code', '1-2hrs', 'http://users.ece.utexas.edu/~patt/19f.306/LabAssignments/Project2/index.html'),
+    createData('Lab 3', 'Linked List', 'LC3 Assembly', '3-5hrs', 'http://users.ece.utexas.edu/~patt/19f.306/LabAssignments/Project3/index.html'),
+    createData('Lab 4', 'Connect 4', 'LC3 Assembly', '3-5hrs', 'http://users.ece.utexas.edu/~patt/19f.306/LabAssignments/Project4/PA4_coverpage.html'),
+    createData('Lab 5', 'Handling Interrupts', 'LC3 Assembly', '2-3hrs', 'http://users.ece.utexas.edu/~patt/19f.306/LabAssignments/Project5/index.html'),
 ];
 
 function ee306Labs() {
