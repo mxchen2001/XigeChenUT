@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import {
     Typography,
     Button,
-    Grid,
     Container,
     Table,
     TableBody,
@@ -13,6 +12,7 @@ import {
     TableRow,
     Paper
 } from '@material-ui/core';
+import MailOutlineIcon from '@material-ui/icons/MailOutline';
 
 // Using Grey: #959595 | Cream: #e2e0d4 | Off Pink: #cebeb9 | Pure Pink: #e7cac2 | Soft Grey:#e8e8e8
 
@@ -74,6 +74,25 @@ function eeClassTable(data) {
                 </TableBody>
             </Table>
         </TableContainer>
+
+        <br></br>
+        <br></br>
+        <Container style={{display: 'flex', justifyContent:'center', alignItems:'center', maxWidth:'80%'}}>
+            <Typography variant='h2'style={{fontSize: '1.4rem'}}>
+                If you want specifics, please email me as sharing code with other students is against university policy.
+            </Typography>
+        </Container>
+        <br></br>
+        <Container style={{display: 'flex', justifyContent:'center', alignItems:'center', maxWidth:'80%'}}>
+            <Button
+                variant="contained"
+                color="default"
+                startIcon={<MailOutlineIcon />}
+                href="mailto:mxchen2001@utexas.edu"
+                >
+                Email me
+            </Button>
+        </Container>
         <br></br>
         </div>
     );
