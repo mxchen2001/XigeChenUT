@@ -15,7 +15,8 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  NavLink
+  NavLink,
+  HashRouter
 } from "react-router-dom";
 
 import Home from './components/home'
@@ -54,7 +55,7 @@ function Navbar() {
             color: "#bdbdbd",
             textDecoration: 'none'
           }}
-          to="/XigeChenUT/">
+          to="/">
             <Button>
               <Typography variant='h2' className={classes.title} style={{fontSize: '1.7rem', color: "white"}}>
                 Home
@@ -126,17 +127,19 @@ function App() {
   return (
     <div>
       <div className={classes.root}>
-        <Router>
-          <Navbar/>
-            <Switch>
-              <Route exact path="/XigeChenUT/Labs/EE306Labs" component={EE306Labs} />
-              <Route exact path="/XigeChenUT/Labs/EE312Labs" component={EE312Labs} />
-              <Route exact path="/XigeChenUT/Labs/EE319Labs" component={EE319Labs} />
-              <Route exact path="/XigeChenUT/Labs/EE460nLabs" component={EE460nLabs} />
-              <Route exact path="/XigeChenUT/Labs/EE422Labs" component={EE422Labs} />
-              <Route exact path="/XigeChenUT/" component={Home} />
-            </Switch>
-            <Footer />
+        <Router basename="/XigeChenUT">
+          <HashRouter>
+            <Navbar/>
+              <Switch>
+                <Route exact path="/EE306Labs" component={EE306Labs} />
+                <Route exact path="/EE312Labs" component={EE312Labs} />
+                <Route exact path="/EE319Labs" component={EE319Labs} />
+                <Route exact path="/EE460nLabs" component={EE460nLabs} />
+                <Route exact path="/EE422Labs" component={EE422Labs} />
+                <Route exact path="/" component={Home} />
+              </Switch>
+              <Footer />
+          </HashRouter>
         </Router>
       </div>
     </div>

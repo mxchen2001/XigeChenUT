@@ -17,11 +17,7 @@ import {
 } from '@material-ui/lab';
 
 import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
     Link,
-    NavLink
 } from "react-router-dom";
 
 import ListSubheader from '@material-ui/core/ListSubheader';
@@ -173,8 +169,7 @@ class MyTimeline extends Component {
                             button 
                             className={listClasses.nested} 
                             component={Link} 
-                            target="_blank"
-                            to="/XigeChenUT/Labs/EE306Labs"
+                            to="/EE306Labs"
                             >
                             <ListItemText 
                                 buttons
@@ -214,8 +209,7 @@ class MyTimeline extends Component {
                             button 
                             className={listClasses.nested}
                             component={Link} 
-                            target="_blank"
-                            to="/XigeChenUT/Labs/EE319Labs"
+                            to="/EE319Labs"
                             >
                             <ListItemText 
                                 button 
@@ -241,8 +235,7 @@ class MyTimeline extends Component {
                             button 
                             className={listClasses.nested}
                             component={Link} 
-                            target="_blank"
-                            to="/XigeChenUT/Labs/EE312Labs">
+                            to="/EE312Labs">
                             <ListItemText 
                                 button
                                 primary="EE 312H Labs" />
@@ -289,9 +282,8 @@ class MyTimeline extends Component {
                         <ListItem 
                             button 
                             className={listClasses.nested}
-                            target="_blank"
                             component={Link} 
-                            to="/XigeChenUT/Labs/EE460nLabs">
+                            to="/EE460nLabs">
                             <ListItemText 
                                 button 
                                 primary="EE 460N Labs"
@@ -317,8 +309,7 @@ class MyTimeline extends Component {
                             button 
                             className={listClasses.nested}
                             component={Link} 
-                            target="_blank"
-                            to="/XigeChenUT/Labs/EE422Labs">
+                            to="/EE422Labs">
                             <ListItemText 
                                 button
                                 primary="EE 422C Labs" />
