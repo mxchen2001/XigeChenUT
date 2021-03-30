@@ -414,10 +414,14 @@ class MyTimeline extends Component {
     }
 
     render(){          
-        const timelineClasses = makeStyles((theme) => ({
+        const classes = makeStyles((theme) => ({
+            root: {
+                // maxWidth: '80%'
+            },
             paper: {
-                padding: '6px 32px',
-                paddingRight: '10px'
+                maxWidth: '150%',
+                // padding: '6px 32px',
+                // paddingRight: '10px'
             },
             secondaryTail: {
                 backgroundColor: theme.palette.secondary.main,
@@ -429,7 +433,7 @@ class MyTimeline extends Component {
         }));
 
         return (
-            <Container style={{maxWidth: '80%'}}>
+            <Container style={{justifyContent:'center', alignItems:'center', marginTop: 100, marginBottom: 100}}>
                 <Typography variant="h2" color="textSecondary">
                     My Classes
                 </Typography>
@@ -455,7 +459,7 @@ class MyTimeline extends Component {
                     </TimelineSeparator>
 
                     <TimelineContent>
-                        <Paper m={2} elevation={3} className={timelineClasses.paper}>
+                        <Paper m={2} elevation={3} className={classes.paper}>
                             {this.state.sem1['showCurrent']? this.renderSem1() : this.renderListSubtitle("Fall 2019")}                    
                         </Paper>
                     </TimelineContent>
@@ -482,7 +486,7 @@ class MyTimeline extends Component {
                     </TimelineSeparator>
 
                     <TimelineContent>
-                    <Paper m={2} elevation={3} className={timelineClasses.paper}>
+                    <Paper m={2} elevation={3} className={classes.paper}>
                         {this.state.sem2['showCurrent']? this.renderSem2() : this.renderListSubtitle("Spring 2020")}                    
                     </Paper>
                     </TimelineContent>
@@ -509,11 +513,11 @@ class MyTimeline extends Component {
                         >
                         <MemoryIcon />
                     </TimelineDot>
-                    <TimelineConnector className={timelineClasses.secondaryTail} />
+                    <TimelineConnector className={classes.secondaryTail} />
                     </TimelineSeparator>
 
                     <TimelineContent>
-                    <Paper m={2} elevation={3} className={timelineClasses.paper}>
+                    <Paper m={2} elevation={3} className={classes.paper}>
                         {this.state.sem3['showCurrent']? this.renderSem3() : this.renderListSubtitle("Fall 2020")}                    
                     </Paper>
                     </TimelineContent>
@@ -539,11 +543,11 @@ class MyTimeline extends Component {
                             >
                             <DeveloperBoardIcon />
                         </TimelineDot>
-                        <TimelineConnector className={timelineClasses.secondaryTail} />
+                        <TimelineConnector className={classes.secondaryTail} />
                     </TimelineSeparator>
 
                     <TimelineContent>
-                    <Paper m={2} elevation={3} className={timelineClasses.paper}>
+                    <Paper m={2} elevation={3} className={classes.paper}>
                         {this.state.sem4['showCurrent']? this.renderSem4() : this.renderListSubtitle("Spring 2021")}                    
                     </Paper>
                     </TimelineContent>
@@ -566,7 +570,7 @@ class MyTimeline extends Component {
                     </TimelineSeparator>
 
                     <TimelineContent>
-                        <Paper m={2} elevation={3} className={timelineClasses.paper} />
+                        <Paper m={2} elevation={3} className={classes.paper} />
                     </TimelineContent>
 
                 </TimelineItem>

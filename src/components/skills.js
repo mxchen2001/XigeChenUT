@@ -35,16 +35,16 @@ const SWLogos1 = [
 
 function mySkills() {
     return (
-        <Container style={{maxWidth:'80%'}}>
+        <Container style={{maxWidth:'80%', marginTop: 100, marginBottom: 100,}}>
             <Typography variant="h2" color="textSecondary">
                 Skills
             </Typography>
             <Container style={{display: 'flex', justifyContent:'center', alignItems:'center', height: '10vh'}}/>
-            <Container style={{display: 'flex', justifyContent:'center', alignItems:'center', height: '30vh'}}>
+            <Container style={{display: 'flex', justifyContent:'center', alignItems:'center'}}>
 
                 <Grid container justify = "center" item xs={12} spacing={10}>
                 {SWLogos1.map((currentLogo) => (
-                    <Box m={4}>
+                    <Box xs={12} m={4}>
                         <img src={currentLogo}  width='100px' />
                     </Box>
                 ))}

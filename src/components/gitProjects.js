@@ -73,17 +73,16 @@ function projectCards(projName, description, image, link) {
 function gitProjects() {
   return (
 
-    <Container style={{justifyContent:'center', alignItems:'center', maxWidth:'80%'}}>
+    <Container style={{justifyContent:'center', alignItems:'center', maxWidth:'80%', marginTop: 100, marginBottom: 100,}}>
 
         <Typography variant="h2" color="textSecondary">
             My Projects
         </Typography>
-        <Container style={{display: 'flex', justifyContent:'center', alignItems:'center', height: '10vh'}}/>
-        <Grid container justify = "center" xs={12} spacing={1}>
+        <Grid container justify = "center" spacing={1}>
             {myProjs.map((row) =>
-                <Box m={4}>
+                <Grid item m={4} xs={12} md={6} lg={4} style={{margin: 20, minWidth: "400px"}}>
                     {projectCards(row.projName, row.description, row.image, row.link)}
-                </Box>
+                </Grid>
             )}
         </Grid>
     </Container>

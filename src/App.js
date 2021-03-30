@@ -26,6 +26,8 @@ import EE319Labs from './components/labs/ee319Labs'
 import EE460nLabs from './components/labs/ee460nLabs'
 import EE422Labs from './components/labs/ee422Labs'
 
+import NotesHome from './components/notesHome'
+
 // Using Grey: #959595 | Cream: #e2e0d4 | Off Pink: #cebeb9 | Pure Pink: #e7cac2 | Soft Grey:#e8e8e8
 
 const useStyles = makeStyles((theme) => ({
@@ -38,13 +40,16 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
   },
+  bar: {
+    background: '#959595'
+  }
 }));
 
 function Navbar() {
   const classes = useStyles();
 
   return (
-    <AppBar style={{ background: '#959595' }} position="static" >
+    <AppBar className={classes.bar} xs={12} position="static" >
       <Toolbar>
           <NavLink 
           activeStyle={{
@@ -62,7 +67,7 @@ function Navbar() {
               </Typography>
             </Button>
           </NavLink>
-        {/* <Button>
+        <Button>
           <NavLink 
           activeStyle={{
             fontWeight: "bold",
@@ -72,32 +77,20 @@ function Navbar() {
             color: "#bdbdbd",
             textDecoration: 'none'
           }}
-          to="/">
-            Overview
+          to="/Notes">
+            Notes
           </NavLink>
         </Button>
-        <Button>
-          <NavLink 
-            activeStyle={{
-              fontWeight: "bold",
-              color: "white"
-            }}
-            style={{
-              color: "#bdbdbd",
-              textDecoration: 'none'
-            }}
-            to="/">
-              Classes
-          </NavLink>
-        </Button> */}
       </Toolbar>
     </AppBar>
   );
 }
 
 function Footer() {
+    const classes = useStyles();
+
     return (
-      <AppBar style={{ background: '#959595'}} position="sticky" >
+      <AppBar className={classes.bar} position="sticky" >
         <Toolbar>
           <Grid justify={"center"} alignItems={"center"} spacing={3} container>
             <Grid item>
@@ -136,6 +129,7 @@ function App() {
                 <Route exact path="/EE319Labs" component={EE319Labs} />
                 <Route exact path="/EE460nLabs" component={EE460nLabs} />
                 <Route exact path="/EE422Labs" component={EE422Labs} />
+                <Route exact path="/Notes" component={NotesHome} />
                 <Route exact path="/" component={Home} />
               </Switch>
               <Footer />

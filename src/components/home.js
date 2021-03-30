@@ -1,37 +1,67 @@
 import React , {Component} from 'react';
+import VisibilitySensor from 'react-visibility-sensor'
+
+import MyBio from './bio'
 import MyTimeline from './timeline'
 import GitProjects from './gitProjects'
 import MySkills from './skills'
 import MyHobbies from './hobby'
 
+import FadeElement from './FadeElement'
+
+import {Motion, spring} from 'react-motion';
+
 import UT_ECE from './assets/UTECE.png'
 import UT_Tower from './assets/UT_Tower.jpeg'
 
 import {
+    makeStyles,
     Typography,
     Paper,
     Grid,
     Button,
     Container,
-    Box
+    Box,
+    fade
 } from '@material-ui/core';
 
 import GetAppIcon from '@material-ui/icons/GetApp';
 
+  
 // Using Grey: #959595 | Cream: #e2e0d4 | Off Pink: #cebeb9 | Pure Pink: #e7cac2 | Soft Grey:#e8e8e8
 
 const DEBUG = false;
+
+
+const classes = makeStyles((theme) => ({
+    fadeTop: {
+        display: 'flex',
+        marginTop: 400,
+        marginBottom: 200,
+    },
+    fadeEl: {
+        display: 'flex',
+        margin: 'auto'
+    },
+    fadeImage: {
+        display: 'flex',
+        marginTop: 500,
+        marginBottom: 500,
+        margin: 'auto',
+        justifyContent:'center', 
+        alignItems:'center', 
+    }
+}));
 
 class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            scrolling: false,
             ypos: 0,
             picSize: '70%',
-            logo_opac: 1,
         }
     }
+
 
     componentDidMount() {
         window.addEventListener('scroll', () => this.handleScroll());
@@ -57,50 +87,22 @@ class Home extends Component {
             picSize: sPercent
         })
     }
-    
-    // // Set the opacity of logos
-    // setOpacity(input, lower, upper) {
-    //     if (input < (logoStart - (logoSize/2))) {
-    //         this.setState({
-    //             logo_opac: 1
-    //         })
-    //         return;
+
+    // // Get the font for dynamic titles
+    // getFont(input, starting, limit, end) {
+    //     if ((input < limit)) {
+    //         const sPercent = starting.toString();
+    //         return sPercent + 'px';
     //     }
-
-    //     const midpoint = (upper - lower) / 2;
-    //     const modded_input = input % (upper - lower);
-
-    //     let diff = 1;
-    //     if (modded_input > midpoint) {
-    //         diff = modded_input - midpoint;
-            
-    //     } else {
-    //         diff = midpoint - modded_input;
-            
+    //     const partition = end - limit;
+    //     let size_factor = (end - input) / partition;
+    //     if (size_factor < 0) {
+    //         size_factor = 0;
     //     }
-    //     let ratio = 1 - diff/midpoint;
-
-    //     this.setState({
-    //         logo_opac: ratio
-    //     })
-    //     return;
+    //     const fontSize = starting * size_factor;
+    //     const sPercent = fontSize.toString();
+    //     return sPercent + 'px';
     // }
-
-    // Get the font for dynamic titles
-    getFont(input, starting, limit, end) {
-        if ((input < limit)) {
-            const sPercent = starting.toString();
-            return sPercent + 'px';
-        }
-        const partition = end - limit;
-        let size_factor = (end - input) / partition;
-        if (size_factor < 0) {
-            size_factor = 0;
-        }
-        const fontSize = starting * size_factor;
-        const sPercent = fontSize.toString();
-        return sPercent + 'px';
-    }
 
     getOpacity(input, lower, upper) {
         if ((input < lower)) {
@@ -115,13 +117,13 @@ class Home extends Component {
 
     }
 
-    // Get if the element should be displayed
-    getShowEl(input, lower, upper) {
-        if (input > lower && input < upper) {
-            return true;
-        }
-        return false;
-    }
+    // // Get if the element should be displayed
+    // getShowEl(input, lower, upper) {
+    //     if (input > lower && input < upper) {
+    //         return true;
+    //     }
+    //     return false;
+    // }
 
 
 
@@ -130,85 +132,53 @@ class Home extends Component {
             ypos: window.scrollY
         })
         this.setPicSize(this.state.ypos, 70, 860);
-        // this.setOpacity(this.state.ypos, 0, logoSize);
-        if (window.scrollY === 0 && this.state.scrolling === true) {
-            this.setState({scrolling: false});
-        }
-        else if (window.scrollY !== 0 && this.state.scrolling !== true) {
-            this.setState({scrolling: true});
-        }
     }
+
 
     render() {
         return (
             <div>
-
                 {DEBUG? <Typography style={{alignItems: 'center', 
                                     position: 'fixed' ,  
                                     top: '10%',
                                     }}>
-                        ypos: {this.state.ypos}, logo_opac: {this.state.logo_opac}
+                        ypos: {this.state.ypos}
                 </Typography> : null}
+
+                {/* <Button onClick={() => this.setState({open: !this.state.open})}>Hello button</Button>
+
+                <Motion style={{currentOpacity: spring(this.state.open ? true : false, { stiffness: 140, damping: 20 })}}>
+                    {({currentOpacity}) =>
+                        <div style={{opacity: currentOpacity}}>
+                            <Typography variant='h2'>HELLO WORLD</Typography>
+                        </div>
+                    }
+                </Motion> */}
                 
 
-                <Container maxWidth="2400px" style={{display: 'flex', margin: 'auto', justifyContent:'center', alignItems:'center', height: '70vh'}}>
-                    <img src={UT_ECE} style={{position: 'fixed', opacity: 1, maxWidth: "1900px"}} width={this.state.picSize} />
+                <Container className={classes.fadeImage} style={{marginTop: 100, marginBottom: 100}}>
+                    <FadeElement part stiffness='160' damping='100'>
+                        <Container maxWidth="2400px" style={{display: 'flex', margin: 'auto', justifyContent:'center', alignItems:'center'}}>
+                                <img src={UT_ECE} style={{opacity: 1, maxWidth: "1900px"}} width="70%" />
+                        </Container>
+                    </FadeElement>
                 </Container>
 
-                <Container style={{display: 'flex', justifyContent:'center', alignItems:'center', height: '40vh'}}/>
-                <Container style={{display: 'flex', justifyContent:'center', alignItems:'center', height: '20vh',}}>
-                    <Typography variant="h2" 
-                                style={{alignItems: 'center', 
-                                        top: '10%', 
-                                        opacity: this.getOpacity(this.state.ypos, 869, 1069)}}>
-                        My Time at UT
-                    </Typography>
+                <Container className={classes.fadeTop}>
+                    <FadeElement part stiffness='160' damping='100'><MyBio /></FadeElement>
                 </Container>
-                <Container style={{display: 'flex', justifyContent:'center', alignItems:'center', height: '20vh'}}>
-                    <Typography variant="h2" 
-                                style={{alignItems: 'center',
-                                        fontSize: '1.2rem',
-                                        top: '10%', 
-                                        opacity: this.getOpacity(this.state.ypos, 969, 1169)}}>
-                        Student at the University of Texas at Austin, pursuing a degree in Computer Engineering. Experienced in a variety of languages, platforms, and embedded systems. Skilled at team base work and remote development.
-                    </Typography>
+                <Container className={classes.fadeEl}>
+                    <FadeElement><MySkills /></FadeElement>
                 </Container>
-
-                <Container style={{
-                            display: 'flex', 
-                            justifyContent:'center', 
-                            alignItems:'center', 
-                            height: '30vh',
-                            opacity: this.getOpacity(this.state.ypos, 1169, 1369)
-                            }}>
-                    <Box m={2}>
-                        <Typography variant="h2" style={{alignItems: 'center', fontSize: '2.4rem'}}>
-                            Updated 2021    
-                        </Typography>
-                    </Box>
-                    <Box m={2}>
-                        <Button
-                            variant="contained"
-                            color="default"
-                            startIcon={<GetAppIcon />}
-                            href="https://github.com/mxchen2001/XigeChenUT/raw/master/src/components/assets/pdf_assets/resume_updated_spring_21.pdf"
-                            >
-                            Resume
-                        </Button>
-                    </Box>
+                <Container className={classes.fadeEl}>
+                    <FadeElement><GitProjects /></FadeElement>
                 </Container>
-                <Container style={{opacity: this.getOpacity(this.state.ypos, 1669, 2069)}}>
-                    <MySkills/>
+                <Container className={classes.fadeEl}>
+                    <FadeElement><MyTimeline /></FadeElement>
                 </Container>
-                <Container style={{display: 'flex', justifyContent:'center', alignItems:'center', height: '10vh'}}/>
-                <Container style={{opacity: this.getOpacity(this.state.ypos, 2869, 3269)}}>
-                    <GitProjects/>
+                <Container className={classes.fadeEl}>
+                    <FadeElement><MyHobbies /></FadeElement>
                 </Container>
-                <Container style={{display: 'flex', justifyContent:'center', alignItems:'center', height: '10vh'}}/>
-                <Container style={{opacity: this.getOpacity(this.state.ypos, 4269, 4469)}}>
-                    <MyTimeline/>
-                </Container>
-                <MyHobbies/>
             </div>
         );
     }
