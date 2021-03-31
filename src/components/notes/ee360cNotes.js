@@ -2,18 +2,19 @@ import { Typography, Container } from '@material-ui/core';
 import React from 'react';
 import NotesTable from './notesTable'
 
+const rootref= "https://mxchen2001.github.io/XigeChenUT/note_resources/sem4/ee360c/"
 
 
 // Using Grey: #959595 | Cream: #e2e0d4 | Off Pink: #cebeb9 | Pure Pink: #e7cac2 | Soft Grey:#e8e8e8
 
-function createData(name, mdlink, pdflink) {
-    return {name, mdlink, pdflink};
+function createData(name, link) {
+    return {name, link};
 }
 
 const myData = [
-    createData('Intro'),
-    createData('Gale-Shapley'),
-    createData('Divide and Conquer'),
+    createData('Intro', rootref + 'intro.html'),
+    createData('Gale-Shapley', rootref + 'stable_matching.html'),
+    createData('Divide and Conquer', rootref + 'divide_conquer.html'),
 ];
 
 function ee360cNotes() {

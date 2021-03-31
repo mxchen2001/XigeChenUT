@@ -48,8 +48,7 @@ function NoteTable(data) {
                 <TableHead>
                 <TableRow>
                     <TableCell>Topic</TableCell>
-                    <TableCell align="right">Markdown</TableCell>
-                    <TableCell align="right">PDF</TableCell>
+                    <TableCell align="right">Link</TableCell>
                 </TableRow>
                 </TableHead>
 
@@ -60,8 +59,7 @@ function NoteTable(data) {
                     <TableCell component="th" scope="row">
                         {row.name}
                     </TableCell>
-                    <TableCell align="right">{getButton(row.name, row.mdlink)}</TableCell>
-                    <TableCell align="right">{getButton(row.name, row.pdflink)}</TableCell>
+                    <TableCell align="right">{getButton(row.name, row.link)}</TableCell>
                     </TableRow>
                 ))}
                 </TableBody>
