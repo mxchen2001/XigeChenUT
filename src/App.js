@@ -27,6 +27,10 @@ import EE460nLabs from './components/labs/ee460nLabs'
 import EE422Labs from './components/labs/ee422Labs'
 
 import NotesHome from './components/notesHome'
+import EE461lNotes from './components/notes/ee461lNotes'
+import EE360cNotes from './components/notes/ee360cNotes'
+
+import notAvaiable from './components/notAvailable'
 
 // Using Grey: #959595 | Cream: #e2e0d4 | Off Pink: #cebeb9 | Pure Pink: #e7cac2 | Soft Grey:#e8e8e8
 
@@ -78,7 +82,7 @@ function Navbar() {
             textDecoration: 'none'
           }}
           to="/Notes">
-            Notes
+            Notes (work-in-progress)
           </NavLink>
         </Button>
       </Toolbar>
@@ -130,6 +134,9 @@ function App() {
                 <Route exact path="/EE460nLabs" component={EE460nLabs} />
                 <Route exact path="/EE422Labs" component={EE422Labs} />
                 <Route exact path="/Notes" component={NotesHome} />
+                <Route exact path="/Notes/EE461L" component={EE461lNotes} />
+                <Route exact path="/Notes/EE360C" component={EE360cNotes} />
+                <Route exact path="/pageNA" component={notAvaiable} />
                 <Route exact path="/" component={Home} />
               </Switch>
               <Footer />

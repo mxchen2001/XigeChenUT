@@ -32,9 +32,9 @@ function createClassField(sem, classCard) {
 
 
 const sem4Classes = [
-    createClassCard("EE 461L", "Software Engineering and Design Laboratory", null, ""),
+    createClassCard("EE 461L", "Software Engineering and Design Laboratory", null, "/Notes/EE461L"),
     createClassCard("EE 461S", "Operating Systems", null, ""),
-    createClassCard("EE 360C", "Algorithms", null, ""),
+    createClassCard("EE 360C", "Algorithms", null, "/Notes/EE360C"),
     createClassCard("M 328K", "Intro to Number Theory", null, ""),
                 ];
 
@@ -80,13 +80,21 @@ function classCards(className, description, image, link) {
         },
     });
 
+    var notes_link = link;
+    var disable_link = false;
+    if (link === "") {
+        notes_link = "/pageNA"
+        disable_link = true;
+    }
+
     return (
         <Container style={{justifyContent:'center', alignItems:'center', maxWidth:'400px'}}>
             <Card className={classes.root}>
                 <CardActionArea 
                         target="_blank"
+                        disabled={disable_link}
                         component={Link} 
-                        to={link}>
+                        to={notes_link}>
                     <CardMedia
                     className={classes.media}
                     >
@@ -107,8 +115,9 @@ function classCards(className, description, image, link) {
                 <CardActions>
                     <Button size="small" color="primary" target="_blank" 
                         component={Link} 
-                        to={link}>
-                        See notes
+                        disabled={disable_link}
+                        to={notes_link}>
+                        {!disable_link? "See notes": "Unavailable"}
                     </Button>
                 </CardActions>
             </Card>
