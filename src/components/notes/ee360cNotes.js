@@ -12,9 +12,9 @@ function createData(name, link) {
 }
 
 const myData = [
-    createData('Intro', rootref + 'intro.html'),
-    createData('Gale-Shapley', rootref + 'stable_matching.html'),
-    createData('Divide and Conquer', rootref + 'divide_conquer.html'),
+    createData('Intro', rootref + 'intro.pdf'),
+    createData('Gale-Shapley', rootref + 'stable_matching.pdf'),
+    createData('Divide and Conquer', rootref + 'divide_conquer.pdf'),
 ];
 
 function ee360cNotes() {

@@ -12,12 +12,12 @@ function createData(name, link) {
 }
 
 const myData = [
-    createData('Functions', rootref + 'Functions.html'),
-    createData('Lists', rootref + 'Lists.html'),
-    createData('Exceptions', rootref + 'Exceptions.html'),
-    createData('Files', rootref + 'Files.html'),
-    createData('OOP', rootref + 'OOP.html'),
-    createData('Matplotlib', rootref + 'Matplotlib.html'),
+    createData('Functions', rootref + 'Functions.pdf'),
+    createData('Lists', rootref + 'Lists.pdf'),
+    createData('Exceptions', rootref + 'Exceptions.pdf'),
+    createData('Files', rootref + 'Files.pdf'),
+    createData('OOP', rootref + 'OOP.pdf'),
+    createData('Matplotlib', rootref + 'Matplotlib.pdf'),
 ];
 
 function ee461lNotes() {
