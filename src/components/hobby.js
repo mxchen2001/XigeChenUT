@@ -174,9 +174,7 @@ class myHobbies extends Component {
                 <Container style={{justifyContent:'center', alignItems:'center', maxWidth:'300px'}}>
                     <GridList cellHeight={240} style={{width: 500, height: 300,}}>
                         <GridListTile key={ramenPic} >
-                            <div style={{display: 'flex', width: '300px'}}>
-                                <img src={ramenPic} style={{position: 'relative', opacity: 1}} width='260px'/>
-                            </div>
+                            <img src={ramenPic} style={{position: 'relative', opacity: 1}}/>
                             <GridListTileBar
                             title="Sorry No Recipe Yet"
                             subtitle={<span>by: Michael</span>}
@@ -200,9 +198,7 @@ class myHobbies extends Component {
                 <Container style={{justifyContent:'center', alignItems:'center', maxWidth:'300px'}}>
                     <GridList cellHeight={240} style={{width: 500, height: 300,}}>
                         <GridListTile key={pizzaPic} >
-                            <div style={{display: 'flex', width: '300px'}}>
-                                <img src={pizzaPic} style={{alignItems:'center',  position: 'relative', opacity: 1}} width='260px'/>
-                            </div>
+                            <img src={pizzaPic} style={{alignItems:'center',  position: 'relative', opacity: 1}} />
                             <GridListTileBar
                             title="Click to see Recipe"
                             subtitle={<span>by: Michael</span>}
