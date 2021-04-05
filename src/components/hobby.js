@@ -1,5 +1,6 @@
 import React , {Component} from 'react';
 import pizzaPic from './assets/pizzaPic.png'
+import ramenPic from './assets/ramen.png'
 import { makeStyles } from '@material-ui/core/styles';
 
 import {
@@ -172,9 +173,35 @@ class myHobbies extends Component {
     
                 <Container style={{justifyContent:'center', alignItems:'center', maxWidth:'300px'}}>
                     <GridList cellHeight={240} style={{width: 500, height: 300,}}>
+                        <GridListTile key={ramenPic} >
+                            <div style={{display: 'flex', width: '300px'}}>
+                                <img src={ramenPic} style={{position: 'relative', opacity: 1}} width='260px'/>
+                            </div>
+                            <GridListTileBar
+                            title="Sorry No Recipe Yet"
+                            subtitle={<span>by: Michael</span>}
+                            actionIcon={
+                                <IconButton aria-label={`info about title`}
+                                            style={{color: 'grey'}}
+                                            disabled
+                                            // onClick={() => {
+                                            //     this.setState({
+                                            //         showRecipe1: !this.state.showRecipe1
+                                            //     })
+                                            // }}
+                                            >
+                                    <InfoIcon />
+                                </IconButton>
+                            }
+                            />
+                        </GridListTile>
+                    </GridList>
+                </Container>
+                <Container style={{justifyContent:'center', alignItems:'center', maxWidth:'300px'}}>
+                    <GridList cellHeight={240} style={{width: 500, height: 300,}}>
                         <GridListTile key={pizzaPic} >
                             <div style={{display: 'flex', width: '300px'}}>
-                                <img src={pizzaPic} style={{position: 'relative', opacity: 1}} width='260px'/>
+                                <img src={pizzaPic} style={{alignItems:'center',  position: 'relative', opacity: 1}} width='260px'/>
                             </div>
                             <GridListTileBar
                             title="Click to see Recipe"
