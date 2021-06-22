@@ -55,23 +55,23 @@ function Navbar() {
   return (
     <AppBar className={classes.bar} xs={12} position="static" >
       <Toolbar>
-          <NavLink 
-          activeStyle={{
-            fontWeight: "bold",
-            color: "white"
-          }} 
-          style={{
-            color: "#bdbdbd",
-            textDecoration: 'none'
-          }}
-          to="/">
-            <Button>
-              <Typography variant='h2' className={classes.title} style={{fontSize: '1.7rem', color: "white"}}>
-                Home
-              </Typography>
-            </Button>
-          </NavLink>
-        <Button>
+        <NavLink 
+        activeStyle={{
+          fontWeight: "bold",
+          color: "white"
+        }} 
+        style={{
+          color: "#bdbdbd",
+          textDecoration: 'none'
+        }}
+        to="/">
+          <Button>
+            <Typography variant='h2' className={classes.title} style={{fontSize: '1.7rem', color: "white"}}>
+              Home
+            </Typography>
+          </Button>
+        </NavLink>
+        {/* <Button>
           <NavLink 
           activeStyle={{
             fontWeight: "bold",
@@ -84,7 +84,7 @@ function Navbar() {
           to="/Notes">
             Notes (work-in-progress)
           </NavLink>
-        </Button>
+        </Button> */}
       </Toolbar>
     </AppBar>
   );
@@ -94,7 +94,7 @@ function Footer() {
     const classes = useStyles();
 
     return (
-      <AppBar className={classes.bar} position="sticky" >
+      <AppBar className={classes.bar} position="relative" >
         <Toolbar>
           <Grid justify={"center"} alignItems={"center"} spacing={3} container>
             <Grid item>
@@ -126,7 +126,7 @@ function App() {
       <div className={classes.root}>
         <Router basename="/XigeChenUT">
           <HashRouter>
-            <Navbar/>
+            {/* <Navbar/> */}
               <Switch>
                 <Route exact path="/EE306Labs" component={EE306Labs} />
                 <Route exact path="/EE312Labs" component={EE312Labs} />

@@ -28,26 +28,27 @@ function projectCards(projName, description, image, link) {
 
     const classes = makeStyles({
         root: {
-            maxWidth: 100,
             paddingTop: '56.25%', // 16:9,
             marginTop:'30',
+            maxWidth: '10vw'
         },
         media: {
-            height: 140,
+            height: '10vh',
+            maxWidth: '10vw'
         },
     });
 
     return (
-        <Container style={{justifyContent:'center', alignItems:'center', maxWidth:'400px'}}>
+        <Container style={{justifyContent:'center', alignItems:'center'}}>
             <Card className={classes.root}>
                 <CardActionArea 
-                        target="_blank"
+                        target={link}
                         href={link}>
                     <CardMedia
                     className={classes.media}
                     >
-                        <Container style={{justifyContent:'center', alignItems:'center'}}>
-                            <img src={image} width='300px'/>
+                        <Container style={{justifyContent:'center', alignItems:'center', padding: '2vh'}}>
+                            <img src={image} width='100%'/>
                         </Container>
                     </CardMedia>
                     <CardContent>
@@ -78,9 +79,9 @@ function gitProjects() {
         <Typography variant="h2" color="textSecondary">
             My Projects
         </Typography>
-        <Grid container justify = "center" spacing={1}>
+        <Grid container justify = "center" spacing={1} style={{paddingTop: '5vh'}}>
             {myProjs.map((row) =>
-                <Grid item m={4} xs={12} md={6} lg={4} style={{margin: 20, minWidth: "400px"}}>
+                <Grid item m={4} xs={12} md={6} lg={4}>
                     {projectCards(row.projName, row.description, row.image, row.link)}
                 </Grid>
             )}

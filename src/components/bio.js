@@ -46,7 +46,8 @@ function MyBio() {
                 <Box m={2}>
                     <Button
                         variant="contained"
-                        color="default"
+                        color="primary"
+                        style={{backgroundColor: '#bf5700'}}
                         startIcon={<GetAppIcon />}
                         href="https://github.com/mxchen2001/mxchen2001.github.io/raw/master/UT_files/Other/xige_chen_resume.pdf"
                         >
