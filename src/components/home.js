@@ -176,9 +176,9 @@ class Home extends Component {
                 <Container className={classes.fadeEl}>
                     <FadeElement><MyTimeline /></FadeElement>
                 </Container>
-                <Container className={classes.fadeEl}>
+                {/* <Container className={classes.fadeEl}>
                     <FadeElement><MyHobbies /></FadeElement>
-                </Container>
+                </Container> */}
             </div>
         );
     }

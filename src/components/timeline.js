@@ -1,10 +1,5 @@
 import React, {Component} from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import {
-    Typography,
-    Paper,
-    Container
-} from '@material-ui/core';
+import { makeStyles, ThemeProvider, createMuiTheme} from '@material-ui/core/styles';
 
 import {
     Timeline,
@@ -17,16 +12,23 @@ import {
 } from '@material-ui/lab';
 
 import {
+    Typography,
+    IconButton,
+    Button,
+    Paper,
+    Grid,
+    Container,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow,
+} from '@material-ui/core';
+
+import {
     Link,
 } from "react-router-dom";
-
-import ListSubheader from '@material-ui/core/ListSubheader';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import Collapse from '@material-ui/core/Collapse';
-import ExpandLess from '@material-ui/icons/ExpandLess';
-import ExpandMore from '@material-ui/icons/ExpandMore';
 
 import MenuBookIcon from '@material-ui/icons/MenuBook';
 import LaptopMacIcon from '@material-ui/icons/LaptopMac';
@@ -34,46 +36,141 @@ import MemoryIcon from '@material-ui/icons/Memory';
 import DeveloperBoardIcon from '@material-ui/icons/DeveloperBoard';
 import UpdateIcon from '@material-ui/icons/Update';
 
-const UTsem1 = {
-    'showCurrent' : false,
-    'ee302' : false,
-    'ee306' : false,
-    'm427j' : false,
+import SentimentSatisfiedAltIcon from '@material-ui/icons/SentimentSatisfiedAlt';
+import SentimentSatisfiedIcon from '@material-ui/icons/SentimentSatisfied';
+import SentimentVeryDissatisfiedIcon from '@material-ui/icons/SentimentVeryDissatisfied';
+
+import {
+    blue,
+    pink,
+    red,
+    purple,
+    green,
+    blueGrey
+} from '@material-ui/core/colors/';
+
+const theme = createMuiTheme({
+    palette: {
+        primary: blue,
+        secondary: red,
+        info: purple,
+        error: pink,
+    },
+    status: {
+      danger: 'orange',
+    },
+  });
+
+const diffIcon = (index) => {
+    switch (index) {
+        case 0:
+            return <SentimentSatisfiedAltIcon style={{color: '#4CAF50'}} />
+        case 1:
+            return <SentimentSatisfiedIcon style={{color: '#FFC107'}} />
+        case 2:
+            return <SentimentVeryDissatisfiedIcon style={{color: '#FF5252'}} />
+    }
 }
 
-const UTsem2 = {
-    'showCurrent' : false,
-    'ee319H' : false,
-    'ee312H' : false,
-    'ee411' : false,
-    'm340L' : false,
-    'm325k' : false,
-}
+const UTsem1 = [
+    {
+        'name' : 'Intro to Electrical Engineering',
+        'id' : 'EE 302',
+        'difficulty' : 0
+    },
+    {
+        'name' : 'Intro to Computing',
+        'id' : 'EE 306',
+        'difficulty' : 0
+    },
+    {
+        'name' : 'Differential Equations and Linear Algebra',
+        'id' : 'M 427J',
+        'difficulty' : 0
+    },
+]
 
-const UTsem3 = {
-    'showCurrent' : false,
-    'ee460n' : false,
-    'ee422c' : false,
-    'ee313' : false,
-    'ee333t' : false,
-    'ee351k' : false,
-}
+const UTsem2 = [
+    {
+        'name' : 'Intro to Embedded Systems',
+        'id' : 'EE 319H',
+        'difficulty' : 0
+    },
+    {
+        'name' : 'Software Design and Implementation I',
+        'id' : 'EE 312H',
+        'difficulty' : 0
+    },
+    {
+        'name' : 'Circuit Theory',
+        'id' : 'EE 411',
+        'difficulty' : 0
+    },
+    {
+        'name' : 'Matrices and Matrix',
+        'id' : 'M 340L',
+        'difficulty' : 1
+    },
+    {
+        'name' : 'Discrete Math',
+        'id' : 'M 325K',
+        'difficulty' : 0
+    }
+]
 
-const UTsem4 = {
-    'showCurrent' : false,
-    'ee360c' : false,
-    'ee461l' : false,
-    'm328k' : false,
-    'ee461s' : false,
-}
+const UTsem3 = [
+    {
+        'name' : 'Computer Architecture',
+        'id' : 'EE 460N',
+        'difficulty' : 2
+    },
+    {
+        'name' : 'Software Design and Implementation II',
+        'id' : 'EE 422C',
+        'difficulty' : 1  
+    },
+    {
+        'name' : 'Linear Systems and Signals',
+        'id' : 'EE 313',
+        'difficulty' : 2
+    },
+    {
+        'name' : 'Engineering Communications',
+        'id' : 'EE 333T',
+        'difficulty' : 0
+    },
+    {
+        'name' : 'Probability, Statistics, and Random Processes',
+        'id' : 'EE 351K',
+        'difficulty' : 2
+    },
+]
 
-function toggle(myClasses, toggleEl) {
-    const currentState = myClasses[toggleEl];
-    myClasses[toggleEl] = !currentState;
-    return myClasses;
-}
+const UTsem4 = [
+    {
+        'name' : 'Algorithms',
+        'id' : 'EE 360C',
+        'difficulty' : 2
+    },
+    {
+        'name' : 'Software Design and Engineering Lab',
+        'id' : 'EE 461L',
+        'difficulty' : 1
+    },
+    {
+        'name' : 'Number Theory',
+        'id' : 'M 328K',
+        'difficulty' : 0
+    },
+    {
+        'name' : 'Operating Systems',
+        'id' : 'EE 461S',
+        'difficulty' : 2
+    },
+]
 
-const listClasses = makeStyles((theme) => ({
+
+const classes = makeStyles((theme) => ({
     root: {
       width: '100%',
       maxWidth: 360,
@@ -82,500 +179,184 @@ const listClasses = makeStyles((theme) => ({
     nested: {
       paddingLeft: theme.spacing(4),
     },
+    table: {
+    },
+    timelineTextContainer: {
+        minWidth: '5vw',
+        padding: '100vw'
+    },
+    timelineText: {
+        padding: '100vw'
+    },
+    paper: {
+        width: "100vw",
+        padding: '6px 16px',
+    },
+    secondaryTail: {
+        backgroundColor: theme.palette.secondary.main,
+    },
+    DotButton: {
+        margin: theme.spacing(1),
+        borderRadius: "5em"
+    },
 }));
-
-
 
 class MyTimeline extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            sem1: UTsem1,
-            sem2: UTsem2,
-            sem3: UTsem3,
-            sem4: UTsem4,
+            data: UTsem4,
+            height: 0,
+            width: 0
         }
+        this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
     }
 
-    toggleSem(currentYear) {
-        if (currentYear === "Fall 2019") {
-            this.setState({
-                sem1: toggle(this.state.sem1, 'showCurrent')
-            }); 
-            return
-        }
-        if (currentYear === "Spring 2020") {
-            this.setState({
-                sem2: toggle(this.state.sem2, 'showCurrent')
-            }); 
-            return
-        }
-        if (currentYear === "Fall 2020") {
-            this.setState({
-                sem3: toggle(this.state.sem3, 'showCurrent')
-            }); 
-            return
-        }
-        if (currentYear === "Spring 2021") {
-            this.setState({
-                sem4: toggle(this.state.sem4, 'showCurrent')
-            }); 
-            return
-        }
+    updateWindowDimensions() {
+        this.setState({ 
+            width: window.innerWidth, 
+            height: window.innerHeight 
+        });
     }
 
-    renderListSubtitle(currentTitle) {
-        return (
-            <List
-                component="nav"
-                aria-labelledby="nested-list-subheader"
-                className={listClasses.root}
-                >
-
-                <ListItem 
-                    button
-                    onClick={() => this.toggleSem(currentTitle)} 
-                    >
-                    <ListItemText primary={currentTitle} />
-                </ListItem>
-
-            </List>
-        );
+    componentDidMount() {
+        this.updateWindowDimensions();
+        window.addEventListener('resize', this.updateWindowDimensions);
     }
 
-    renderSem1() {
-        return (
-            <List
-                component="nav"
-                aria-labelledby="nested-list-subheader"
-                className={listClasses.root}
-                >
-                <ListItem button>
-                    <ListItemText primary="Intro to Electrical Engineering" />
-                </ListItem>
-    
-                <ListItem button onClick={() => {
-                    this.setState({
-                        sem1: toggle(this.state.sem1, 'ee306')
-                    }); 
-                }}>
-                    <ListItemText primary="Introduction to Computing" />
-                    {this.state.sem1['ee306'] ? <ExpandLess /> : <ExpandMore />}
-                </ListItem>
-    
-                <Collapse in={this.state.sem1['ee306']} timeout="auto" unmountOnExit>
-                    <List component="div" disablePadding>
-                        <ListItem 
-                            button 
-                            className={listClasses.nested} 
-                            component={Link} 
-                            to="/EE306Labs"
-                            >
-                            <ListItemText 
-                                buttons
-                                primary="EE 306 Labs"/>
-                        </ListItem>
-                    </List>
-                </Collapse>
-    
-                <ListItem button>
-                    <ListItemText primary="Differential Equations" />
-                </ListItem>
-            </List>
-        );
-    }
-
-    renderSem2() {
-        return (
-            <List
-                component="nav"
-                aria-labelledby="nested-list-subheader"
-                className={listClasses.root}
-                >
-                <ListItem 
-                    button
-                    onClick={() => {
-                        this.setState({
-                            sem2: toggle(this.state.sem2, 'ee319h')
-                        }); 
-                    }}>
-                    <ListItemText primary="Intro to Embedded Systems" />
-                    {this.state.sem2['ee319h'] ? <ExpandLess /> : <ExpandMore />}
-                </ListItem>
-    
-                <Collapse in={this.state.sem2['ee319h']} timeout="auto" unmountOnExit>
-                    <List component="div" disablePadding>
-                        <ListItem 
-                            button 
-                            className={listClasses.nested}
-                            component={Link} 
-                            to="/EE319Labs"
-                            >
-                            <ListItemText 
-                                button 
-                                primary="EE 319H Labs" />
-                        </ListItem>
-                    </List>
-                </Collapse>
-    
-                <ListItem 
-                    button 
-                    onClick={() => {
-                        this.setState({
-                            sem2: toggle(this.state.sem2, 'ee312h')
-                        }); 
-                    }}>
-                    <ListItemText primary="Software Design and Implementation I" />
-                    {this.state.sem2['ee312h'] ? <ExpandLess /> : <ExpandMore />}
-                </ListItem>
-    
-                <Collapse in={this.state.sem2['ee312h']} timeout="auto" unmountOnExit>
-                    <List component="div" disablePadding>
-                        <ListItem 
-                            button 
-                            className={listClasses.nested}
-                            component={Link} 
-                            to="/EE312Labs">
-                            <ListItemText 
-                                button
-                                primary="EE 312H Labs" />
-                        </ListItem>
-                    </List>
-                </Collapse>
-    
-                <ListItem button>
-                    <ListItemText primary="Circuit Theory" />
-                </ListItem>
-    
-                <ListItem button>
-                    <ListItemText primary="Matrices and Matrix Calculations" />
-                </ListItem>
-
-                <ListItem button>
-                    <ListItemText primary="Discrete Mathematics" />
-                </ListItem>
-    
-            </List>
-        );
-    }
-
-    renderSem3() {
-        return (
-            <List
-                component="nav"
-                aria-labelledby="nested-list-subheader"
-                className={listClasses.root}
-                >
-                <ListItem 
-                    button
-                    onClick={() => {
-                        this.setState({
-                            sem3: toggle(this.state.sem3, 'ee460n')
-                        }); 
-                    }}>
-                    <ListItemText primary="Computer Architecture" />
-                    {this.state.sem3['ee460n'] ? <ExpandLess /> : <ExpandMore />}
-                </ListItem>
-    
-                <Collapse in={this.state.sem3['ee460n']} timeout="auto" unmountOnExit>
-                    <List component="div" disablePadding>
-                        <ListItem 
-                            button 
-                            className={listClasses.nested}
-                            component={Link} 
-                            to="/EE460nLabs">
-                            <ListItemText 
-                                button 
-                                primary="EE 460N Labs"
-                                 />
-                        </ListItem>
-                    </List>
-                </Collapse>
-    
-                <ListItem 
-                    button 
-                    onClick={() => {
-                        this.setState({
-                            sem3: toggle(this.state.sem3, 'ee422c')
-                        }); 
-                    }}>
-                    <ListItemText primary="Software Design and Implementation II" />
-                    {this.state.sem3['ee422c'] ? <ExpandLess /> : <ExpandMore />}
-                </ListItem>
-    
-                <Collapse in={this.state.sem3['ee422c']} timeout="auto" unmountOnExit>
-                    <List component="div" disablePadding>
-                        <ListItem 
-                            button 
-                            className={listClasses.nested}
-                            component={Link} 
-                            to="/EE422Labs">
-                            <ListItemText 
-                                button
-                                primary="EE 422C Labs" />
-                        </ListItem>
-                    </List>
-                </Collapse>
-    
-                <ListItem button>
-                    <ListItemText primary="Circuit Theory" />
-                </ListItem>
-    
-                <ListItem button>
-                    <ListItemText primary="Matrices and Matrix Calculations" />
-                </ListItem>
-
-                <ListItem button>
-                    <ListItemText primary="Discrete Mathematics" />
-                </ListItem>
-    
-            </List>
-        );
-    }
-
-    renderSem4() {
-        return (
-            <List
-                component="nav"
-                aria-labelledby="nested-list-subheader"
-                className={listClasses.root}
-                >
-                <ListItem 
-                    button
-                    onClick={() => {
-                        this.setState({
-                            sem4: toggle(this.state.sem4, 'ee360c')
-                        }); 
-                    }}>
-                    <ListItemText primary="Algorithms" />
-                    {this.state.sem4['ee360c'] ? <ExpandLess /> : <ExpandMore />}
-                </ListItem>
-    
-                <Collapse in={this.state.sem4['ee360c']} timeout="auto" unmountOnExit>
-                    <List component="div" disablePadding>
-                        <ListItem 
-                            className={listClasses.nested}>
-                            <ListItemText 
-                                button 
-                                primary="EE 360C Labs (Unavailable, currently enrolled)" />
-                        </ListItem>
-                    </List>
-                </Collapse>
-    
-                <ListItem 
-                    button 
-                    onClick={() => {
-                        this.setState({
-                            sem4: toggle(this.state.sem4, 'ee461l')
-                        }); 
-                    }}>
-                    <ListItemText primary="Software Engineering and Design Lab" />
-                    {this.state.sem4['ee461l'] ? <ExpandLess /> : <ExpandMore />}
-                </ListItem>
-    
-                <Collapse in={this.state.sem4['ee461l']} timeout="auto" unmountOnExit>
-                    <List component="div" disablePadding>
-                        <ListItem 
-                                className={listClasses.nested}>
-                            <ListItemText 
-                                button
-                                primary="EE 461L Labs (Unavailable, currently enrolled)" />
-                        </ListItem>
-                    </List>
-                </Collapse>
-    
-                <ListItem button>
-                    <ListItemText primary="Intro to Number Theory" />
-                </ListItem>
-    
-                <ListItem 
-                    button 
-                    onClick={() => {
-                        this.setState({
-                            sem4: toggle(this.state.sem4, 'ee461s')
-                        }); 
-                    }}>
-                    <ListItemText primary="Operating Systems" />
-                    {this.state.sem4['ee461s'] ? <ExpandLess /> : <ExpandMore />}
-                </ListItem>
-    
-                <Collapse in={this.state.sem4['ee461s']} timeout="auto" unmountOnExit>
-                    <List component="div" disablePadding>
-                        <ListItem 
-                            className={listClasses.nested}>
-                            <ListItemText 
-                                button
-                                primary="EE 461S Labs (Unavailable, currently enrolled)" />
-                        </ListItem>
-                    </List>
-                </Collapse>    
-            </List>
-        );
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.updateWindowDimensions);
     }
 
     render(){          
-        const classes = makeStyles((theme) => ({
-            root: {
-                // maxWidth: '80%'
-            },
-            paper: {
-                maxWidth: '150%',
-                // padding: '6px 32px',
-                // paddingRight: '10px'
-            },
-            secondaryTail: {
-                backgroundColor: theme.palette.secondary.main,
-            },
-            DotButton: {
-                margin: theme.spacing(1),
-                borderRadius: "5em"
-            },
-        }));
-
         return (
-            <Container style={{justifyContent:'center', alignItems:'center', marginTop: 100, marginBottom: 100}}>
-                <Typography variant="h2" color="textSecondary">
-                    My Classes
-                </Typography>
-                <Timeline align="left">
-                <TimelineItem>
-                    <TimelineOppositeContent>
-                        <Typography variant="body2" color="textSecondary">
-                            Fall 2019
-                        </Typography>
-                    </TimelineOppositeContent>
-
-                    <TimelineSeparator>
-                        <TimelineDot 
-                            onClick={() => { 
-                                this.setState({
-                                    sem1: toggle(this.state.sem1, 'showCurrent')
-                                }); 
-                            }}  
-                            style={{cursor: "pointer",}}>
-                            <MenuBookIcon />
-                        </TimelineDot>
-                        <TimelineConnector />
-                    </TimelineSeparator>
-
-                    <TimelineContent>
-                        <Paper m={2} elevation={3} className={classes.paper}>
-                            {this.state.sem1['showCurrent']? this.renderSem1() : this.renderListSubtitle("Fall 2019")}                    
-                        </Paper>
-                    </TimelineContent>
-                </TimelineItem>
-                <TimelineItem>
-                    <TimelineOppositeContent>
-                    <Typography variant="body2" color="textSecondary">
-                        Spring 2020
+            <ThemeProvider theme={theme}>
+                <Container style={{justifyContent:'center', alignItems:'center', marginTop: 100, marginBottom: 100}}>
+                    <Typography variant="h2" color="textSecondary">
+                        My Classes
                     </Typography>
-                    </TimelineOppositeContent>
-                    <TimelineSeparator>
-                    <TimelineDot 
-                        color="primary"
-                        onClick={() => { 
-                            this.setState({
-                                sem2: toggle(this.state.sem2, 'showCurrent')
-                            });     
-                        }}  
-                        style={{cursor: "pointer",}}
-                        >
-                        <LaptopMacIcon />
-                    </TimelineDot>
-                    <TimelineConnector />
-                    </TimelineSeparator>
+                    
+                    {/* <Grid container style={{paddingLeft: '10vh', paddingRight: '10vh'}}> */}
+                    <Grid container>
+                        <Grid item xs={12} md={4} lg={3} xl={3}>
+                            <Timeline align="left">
+                                <TimelineItem>
+                                    <TimelineSeparator>
+                                        <TimelineDot 
+                                            style={{cursor: "pointer"}}
+                                            onClick={ () => {
+                                                this.setState({
+                                                    data: UTsem1
+                                                })
+                                            }}
+                                        >
+                                            <LaptopMacIcon />
+                                        </TimelineDot>
+                                    <TimelineConnector />
+                                    </TimelineSeparator>
+                                    <TimelineContent style={{width: '100vw'}}>
+                                        <Paper elevation={0} className={classes.paper}>
+                                            <Typography variant="body2" color="textSecondary">
+                                                Fall 2019
+                                            </Typography>
+                                        </Paper>
+                                    </TimelineContent>
+                                </TimelineItem>
+                                <TimelineItem>
+                                    <TimelineSeparator>
+                                        <TimelineDot color="primary"
+                                            style={{cursor: "pointer"}}
+                                            onClick={ () => {
+                                                this.setState({
+                                                    data: UTsem2
+                                                })
+                                            }}
+                                        >
+                                            <LaptopMacIcon />
+                                        </TimelineDot>
+                                        <TimelineConnector />
+                                    </TimelineSeparator>
+                                    <TimelineContent style={{width: '100vw'}}>
+                                        <Paper elevation={0} className={classes.paper}>
+                                            <Typography variant="body2" color="textSecondary">
+                                                Spring 2020
+                                            </Typography>
+                                        </Paper>
+                                    </TimelineContent>
+                                </TimelineItem>
+                                <TimelineItem>
+                                    <TimelineSeparator>
+                                    <TimelineDot color="info" variant="outlined"
+                                            style={{cursor: "pointer"}}
+                                            onClick={ () => {
+                                                this.setState({
+                                                    data: UTsem3
+                                                })
+                                            }}
+                                    >
+                                        <MemoryIcon />
+                                    </TimelineDot>
+                                    <TimelineConnector className={classes.secondaryTail} />
+                                    </TimelineSeparator>
+                                    <TimelineContent style={{width: '100vw'}}>
+                                        <Paper elevation={0} className={classes.paper}>
+                                            <Typography variant="body2" color="textSecondary">
+                                                Fall 2020
+                                            </Typography>
+                                        </Paper>
+                                    </TimelineContent>
+                                </TimelineItem>
+                                <TimelineItem>
+                                    <TimelineSeparator>
+                                        <TimelineDot color="secondary"
+                                            style={{cursor: "pointer"}}
+                                            onClick={ () => {
+                                                this.setState({
+                                                    data: UTsem4
+                                                })
+                                            }}
+                                        >
+                                            <DeveloperBoardIcon />
+                                        </TimelineDot>
+                                    </TimelineSeparator>
+                                    <TimelineContent style={{width: '100vw'}}>
+                                        <Paper elevation={0} className={classes.paper}>
+                                            <Typography variant="body2" color="textSecondary">
+                                                Spring 2021
+                                            </Typography>
+                                        </Paper>
+                                    </TimelineContent>
+                                </TimelineItem>
+                                </Timeline>
+                        </Grid>
+                        <Grid item xs={12} md={8} lg={9} xl={9} alignItems="center" justifyContent="center">
+                            <TableContainer component={Paper} elevation={3} height="100vh">
+                                <Table className={classes.table} aria-label="simple table">
+                                    <TableHead>
+                                    <TableRow>
+                                        <TableCell>Name</TableCell>
+                                        <TableCell align="right">ID</TableCell>
+                                        <TableCell align="right">Difficulty</TableCell>
+                                    </TableRow>
+                                    </TableHead>
 
-                    <TimelineContent>
-                    <Paper m={2} elevation={3} className={classes.paper}>
-                        {this.state.sem2['showCurrent']? this.renderSem2() : this.renderListSubtitle("Spring 2020")}                    
-                    </Paper>
-                    </TimelineContent>
-
-                </TimelineItem>
-                <TimelineItem>
-
-                    <TimelineOppositeContent>
-                    <Typography variant="body2" color="textSecondary">
-                        Fall 2020
-                    </Typography>
-                    </TimelineOppositeContent>
-
-                    <TimelineSeparator>
-                    <TimelineDot 
-                        color="primary" 
-                        variant="outlined" 
-                        onClick={() => { 
-                            this.setState({
-                                sem3: toggle(this.state.sem3, 'showCurrent')
-                            });     
-                        }}  
-                        style={{cursor: "pointer",}}
-                        >
-                        <MemoryIcon />
-                    </TimelineDot>
-                    <TimelineConnector className={classes.secondaryTail} />
-                    </TimelineSeparator>
-
-                    <TimelineContent>
-                    <Paper m={2} elevation={3} className={classes.paper}>
-                        {this.state.sem3['showCurrent']? this.renderSem3() : this.renderListSubtitle("Fall 2020")}                    
-                    </Paper>
-                    </TimelineContent>
-
-                </TimelineItem>
-                <TimelineItem>
-
-                    <TimelineOppositeContent>
-                    <Typography variant="body2" color="textSecondary">
-                        Spring 2021
-                    </Typography>
-                    </TimelineOppositeContent>
-
-                    <TimelineSeparator>
-                        <TimelineDot 
-                            color="primary"
-                            onClick={() => { 
-                                this.setState({
-                                    sem4: toggle(this.state.sem4, 'showCurrent')
-                                });     
-                            }}  
-                            style={{cursor: "pointer",}}
-                            >
-                            <DeveloperBoardIcon />
-                        </TimelineDot>
-                        <TimelineConnector className={classes.secondaryTail} />
-                    </TimelineSeparator>
-
-                    <TimelineContent>
-                    <Paper m={2} elevation={3} className={classes.paper}>
-                        {this.state.sem4['showCurrent']? this.renderSem4() : this.renderListSubtitle("Spring 2021")}                    
-                    </Paper>
-                    </TimelineContent>
-
-                </TimelineItem>
-                <TimelineItem>
-
-                    <TimelineOppositeContent>
-                    <Typography variant="body2" color="textSecondary">
-                        Upcoming Semester
-                    </Typography>
-                    </TimelineOppositeContent>
-
-                    <TimelineSeparator>
-                    <TimelineDot 
-                        color="primary"
-                        >
-                        <UpdateIcon />
-                    </TimelineDot>
-                    </TimelineSeparator>
-
-                    <TimelineContent>
-                        <Paper m={2} elevation={3} className={classes.paper} />
-                    </TimelineContent>
-
-                </TimelineItem>
-            </Timeline>
-        </Container>
+                                    {this.state.data.map((row) => (
+                                        <TableRow>
+                                        <TableCell scope="row">
+                                            {row.name}
+                                        </TableCell>
+                                        <TableCell align="right">{row.id}</TableCell>
+                                        <TableCell align="right">
+                                            {diffIcon(row.difficulty)}
+                                        </TableCell>
+                                        </TableRow>
+                                    ))}
+                                </Table>
+                            </TableContainer>
+                        </Grid>
+                    </Grid>
+            </Container>
+        </ThemeProvider>
         );
     }
 }

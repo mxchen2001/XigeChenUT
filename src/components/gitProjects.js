@@ -12,14 +12,16 @@ import { Container, Grid, Box } from '@material-ui/core';
 import venmo_electron from './assets/venmo_electron.png'
 import hacktx2020 from './assets/hacktx2020.png'
 import thisSite from './assets/thisSite.png'
+import mdSlides from './assets/mdslides.png'
 
 function createProject(projName, description, image, link) {
     return {projName, description, image, link}
 }
 
 const myProjs = [
-                createProject("Vemno Automation", "Built using ElectronJS and Python that allows you to send a large scale transaction using a spreadsheet to multiple users", venmo_electron, "https://github.com/mxchen2001/Venmo-Automation"),
+                createProject("Markdown Slides", "A web based slide editor/renderer that uses markdown for quick and easy editing", mdSlides, "https://www.xige.page/markdown-render/"),
                 createProject("Hack TX", "A NLP app built using React that that uses Google's NLP engine that gives feedback to help students with job inteviews.", hacktx2020, "https://github.com/ishan0102/hacktx-20"),
+                createProject("Vemno Automation", "Built using ElectronJS and Python that allows you to send a large scale transaction using a spreadsheet to multiple users", venmo_electron, "https://github.com/mxchen2001/Venmo-Automation"),
                 createProject("This Website", "This website is built using React an Material UI and the Parallax is built using React. This gives a quick overview of my UT life. ", thisSite, "https://github.com/mxchen2001/react-personal-website"),
                 ];
 
@@ -42,7 +44,7 @@ function projectCards(projName, description, image, link) {
         <Container style={{justifyContent:'center', alignItems:'center'}}>
             <Card className={classes.root}>
                 <CardActionArea 
-                        target={link}
+                        target='_blank'
                         href={link}>
                     <CardMedia
                     className={classes.media}

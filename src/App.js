@@ -31,7 +31,7 @@ import EE461lNotes from './components/notes/ee461lNotes'
 import EE360cNotes from './components/notes/ee360cNotes'
 
 import notAvaiable from './components/notAvailable'
-
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 // Using Grey: #959595 | Cream: #e2e0d4 | Off Pink: #cebeb9 | Pure Pink: #e7cac2 | Soft Grey:#e8e8e8
 
 const useStyles = makeStyles((theme) => ({
@@ -53,40 +53,43 @@ function Navbar() {
   const classes = useStyles();
 
   return (
-    <AppBar className={classes.bar} xs={12} position="static" >
-      <Toolbar>
-        <NavLink 
-        activeStyle={{
-          fontWeight: "bold",
-          color: "white"
-        }} 
-        style={{
-          color: "#bdbdbd",
-          textDecoration: 'none'
-        }}
-        to="/">
-          <Button>
-            <Typography variant='h2' className={classes.title} style={{fontSize: '1.7rem', color: "white"}}>
-              Home
-            </Typography>
-          </Button>
-        </NavLink>
-        {/* <Button>
-          <NavLink 
-          activeStyle={{
-            fontWeight: "bold",
-            color: "white"
-          }} 
-          style={{
-            color: "#bdbdbd",
-            textDecoration: 'none'
-          }}
-          to="/Notes">
-            Notes (work-in-progress)
-          </NavLink>
-        </Button> */}
-      </Toolbar>
-    </AppBar>
+    <IconButton href='https://www.xige.page/'>
+      <ArrowBackIosIcon/>
+    </IconButton>
+    // <AppBar xs={12} position="static" >
+    //   <Toolbar>
+    //     <NavLink 
+    //     activeStyle={{
+    //       fontWeight: "bold",
+    //       color: "white"
+    //     }} 
+    //     style={{
+    //       color: "#000000",
+    //       textDecoration: 'none'
+    //     }}
+    //     to="/">
+    //       <Button>
+    //         <Typography variant='h2' className={classes.title} style={{fontSize: '1.7rem', color: "white"}}>
+    //           Home
+    //         </Typography>
+    //       </Button>
+    //     </NavLink>
+    //     {/* <Button>
+    //       <NavLink 
+    //       activeStyle={{
+    //         fontWeight: "bold",
+    //         color: "white"
+    //       }} 
+    //       style={{
+    //         color: "#bdbdbd",
+    //         textDecoration: 'none'
+    //       }}
+    //       to="/Notes">
+    //         Notes (work-in-progress)
+    //       </NavLink>
+    //     </Button> */}
+    //   </Toolbar>
+    // </AppBar>
   );
 }
 
@@ -126,7 +129,7 @@ function App() {
       <div className={classes.root}>
         <Router basename="/XigeChenUT">
           <HashRouter>
-            {/* <Navbar/> */}
+            <Navbar/>
               <Switch>
                 <Route exact path="/EE306Labs" component={EE306Labs} />
                 <Route exact path="/EE312Labs" component={EE312Labs} />
