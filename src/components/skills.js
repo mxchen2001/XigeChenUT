@@ -39,16 +39,15 @@ function mySkills() {
             <Typography variant="h2" color="textSecondary">
                 Skills
             </Typography>
-            <Container style={{display: 'flex', justifyContent:'center', alignItems:'center', paddingTop: '5vh'}}>
-
-                <Grid container justify = "center" spacing={10}>
+            {/* <Container style={{ paddingTop: '5vh'}}> */}
+                <Grid container spacing={5} style={{paddingTop: '5vh'}}>
                 {SWLogos1.map((currentLogo) => (
-                    <Grid item xs={6} md={4} lg={2}>
-                        <img src={currentLogo}  width='100px' />
+                    <Grid item m={2} xs={6} md={4} lg={2}>
+                        <img src={currentLogo}  width='100%' />
                     </Grid>
                 ))}
                 </Grid>
-            </Container>
+            {/* </Container> */}
         </Container>
     );
 }
